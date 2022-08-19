@@ -21,7 +21,7 @@
                                 type="text"
                                 name="name"
                                 class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                                placeholder="None"
+                                placeholder="Nome"
                                 value="{{ old('name') }}"
                             >
                             <div class="invalid-feedback" >{{ $errors->first('name') }}</div>

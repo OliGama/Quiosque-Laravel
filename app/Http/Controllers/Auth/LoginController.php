@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-Use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
+use App\Services\UserService;
 
 class LoginController extends Controller
 {
@@ -19,7 +20,10 @@ class LoginController extends Controller
         ];
 
         if(Auth::attempt($credentials)){
-            return redirect()->route('garcom.dashboard.index');
+            $userRole = auth()->user()->role;
+
+            return redirect(UserService::getDashboardRouteBasedOnUserRole($userRole));
+
         }
         return redirect()
                 ->route('auth.login.create')

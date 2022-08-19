@@ -5,7 +5,8 @@ use App\Http\Controllers\Auth\{
 };
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Garcom\Dashboard\DashboardController;
+use App\Http\Controllers\Garcom\Dashboard\DashboardController as GarcomDashboardController;
+use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::group(['as' => 'auth.'], function() {
     Route::post('logout', [LoginController::class, 'destroy'])->name('login.destroy')->middleware('auth');
 });
 
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('garcom/dashboard', [GarcomDashboardController::class, 'index'])->name('garcom.dashboard.index')->middleware('role:garcom');
+    Route::get('caixa/dashboard', [CaixaDashboardController::class, 'index'])->name('caixa.dashboard.index')->middleware('role:caixa');
+});
 
-Route::get('garcom/dashboard', [DashboardController::class, 'index'])->name('garcom.dashboard.index')->middleware('auth');
 
