@@ -28,4 +28,4 @@ Route::group(['as' => 'auth.'], function() {
     Route::post('logout', [LoginController::class, 'destroy'])->name('login.destroy')->middleware('auth');
 });
 
-Route::get('/produto',[ProdutoController::class, 'index'])->name('produto.index');
+Route::resource('produto', ProdutoController::class);
