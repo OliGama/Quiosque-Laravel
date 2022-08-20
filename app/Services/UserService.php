@@ -6,11 +6,11 @@ class UserService
 {
     public static function getDashboardRouteBasedOnUserRole($userRole){
         if($userRole === 'garcom'){
-            return redirect()->route('garcom.dashboard.index');
+            return route('garcom.dashboard.index');
         }
 
         if($userRole === 'caixa'){
-            return redirect()->route('caixa.dashboard.index');
+            return route('caixa.dashboard.index');
         }
     }
 }

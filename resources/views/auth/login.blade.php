@@ -63,9 +63,6 @@
                             </button>
                         </form>
                         <hr>
-                        <div class="text-center">
-                            <a class="small" href="{{ route('auth.register.create') }}">Não tem uma conta? Cadastre-se!</a>
-                        </div>
                     </div>
                 </div>
             </div>
