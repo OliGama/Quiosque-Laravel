@@ -1,5 +1,8 @@
 <?php
-
+use App\Http\Controllers\Auth\{
+    RegisterController,
+    LoginController
+};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
 
@@ -14,8 +17,22 @@ use App\Http\Controllers\ProdutoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['as' => 'auth.'], function() {
+
+    Route::group([ 'middleware' => 'guest'], function(){
+        Route::post('register',[RegisterController::class, 'store'])->name('register.store');
+        Route::get('login', [LoginController::class, 'create'])->name('login.create');
+        Route::post('login', [LoginController::class, 'store'])->name('login.store');
+    });
+
+    Route::get('register', [RegisterController::class, 'create'])->name('register.create')->middleware('role:caixa');
+
+    Route::post('logout', [LoginController::class, 'destroy'])->name('login.destroy')->middleware('auth');
+});
+
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('garcom/dashboard', [GarcomDashboardController::class, 'index'])->name('garcom.dashboard.index')->middleware('role:garcom');
+    Route::get('caixa/dashboard', [CaixaDashboardController::class, 'index'])->name('caixa.dashboard.index')->middleware('role:caixa');
 });
 
 Route::resource('produto', ProdutoController::class);

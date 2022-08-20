@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('produtos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome_produto');
-            $table->string('tipo_produto');
-            $table->integer('quantidade_produto');
-            $table->decimal('preco', 8, 2);
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('role');
+            $table->timestamps();
         });
     }
 
