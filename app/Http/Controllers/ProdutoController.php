@@ -10,4 +10,14 @@ class ProdutoController extends Controller
     {
         return view('produto.index');
     }
+
+    public function create()
+    {
+        return view('produto.create');
+    }
+
+    public function store()
+    {
+        
+    }
 }
