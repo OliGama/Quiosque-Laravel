@@ -14,8 +14,18 @@ use App\Http\Controllers\ProdutoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['as' => 'auth.'], function() {
+
+    Route::group([ 'middleware' => 'guest'], function(){
+        Route::post('register',[RegisterController::class, 'store'])->name('register.store');
+        Route::get('login', [LoginController::class, 'create'])->name('login.create');
+        Route::post('login', [LoginController::class, 'store'])->name('login.store');
+    });
+
+    Route::get('register', [RegisterController::class, 'create'])->name('register.create')->middleware('role:caixa');
+
+
+    Route::post('logout', [LoginController::class, 'destroy'])->name('login.destroy')->middleware('auth');
 });
 
 Route::get('/produto',[ProdutoController::class, 'index'])->name('produto.index');
