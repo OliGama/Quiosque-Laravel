@@ -3,8 +3,8 @@ use App\Http\Controllers\Auth\{
     RegisterController,
     LoginController
 };
+use App\Http\Controllers\Produto\ProdutoController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProdutoController;
 
 /*
 |--------------------------------------------------------------------------
