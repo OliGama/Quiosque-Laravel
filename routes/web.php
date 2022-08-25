@@ -22,11 +22,10 @@ use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardCo
 Route::group(['as' => 'auth.'], function() {
 
     Route::group([ 'middleware' => 'guest'], function(){
-        Route::post('register',[RegisterController::class, 'store'])->name('register.store');
         Route::get('login', [LoginController::class, 'create'])->name('login.create');
         Route::post('login', [LoginController::class, 'store'])->name('login.store');
     });
-
+    Route::post('register',[RegisterController::class, 'store'])->name('register.store')->middleware('role:caixa');
     Route::get('register', [RegisterController::class, 'create'])->name('register.create')->middleware('role:caixa');
 
     Route::post('logout', [LoginController::class, 'destroy'])->name('login.destroy')->middleware('auth');
