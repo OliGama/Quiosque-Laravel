@@ -4,22 +4,22 @@
     <a href="{{ route('caixa.dashboard.index') }}" role="text" class="text-light"
         style="text-decoration: none; pointer-events: unset; cursor: pointer">Quisque Laravel</a>
 @endsection
-@section('content')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
-    Dashboard do Caixa
+@section('session')
     @if (session()->has('success'))
-        <div class="alert-success">
+        <div class="alert-success col-4 align-items-center justify-content-center" data-bs-dismiss="alert" role="alert">
             {{ session('success') }}
         </div>
     @endif
 
     @if (session()->has('warning'))
-        <div class="alert-warning">
+        <div class="alert-warning col-4 align-items-center justify-content-center" data-bs-dismiss="alert" role="alert">
             {{ session('warning') }}
         </div>
     @endif
+@endsection
+@section('content')
+    Dashboard do Caixa
+
     <div class="col">
         <button class="btn btn-outline-primary active" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Cadastrar Garçom</button>
@@ -27,7 +27,7 @@
 
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasRightLabel">Login de Usuário</h5>
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Cadastrar Garçom</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -67,8 +67,4 @@
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
-    </script>
 @endsection

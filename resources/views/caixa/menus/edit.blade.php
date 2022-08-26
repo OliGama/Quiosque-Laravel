@@ -9,7 +9,7 @@
         <p class="form-group">
             <label>Nome do menu</label>
             <input type="text" name="nome" value="{{ old('nome') != '' ? old('nome') : $menu->nome }}"
-                class="form-control @if ($errors->has('nome')) is-invalid @endif"
+                class="form-control @if ($errors->has('nome')) is-invalid @endif">
             <span class="invalid-feedback">
                 @if ($errors->has('nome'))
                     <strong> {{ $errors->first('nome') }} </strong>
