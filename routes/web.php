@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\{
     LoginController
 };
 use App\Http\Controllers\Produto\ProdutoController;
+use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*

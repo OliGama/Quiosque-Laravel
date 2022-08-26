@@ -8,10 +8,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Quiosque Laravel - @yield('title')</title>
+    <title>Quiosque - @yield('title')</title>
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 </head>
 
@@ -28,7 +30,10 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-calendar-check"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Quiosque Laravel</div>
+                <div class="sidebar-brand-text mx-3"><a style="text-decoration: none" href="{{ route('caixa.dashboard.index') }}" role="text"
+                        class="text-light">
+                        Quiosque Laravel</a>
+                </div>
             </div>
 
             <!-- Divider -->
@@ -69,13 +74,14 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    {{ auth()->user()->name }}
+                                    {{-- {{ auth()->user()->name }} --}}
                                 </span>
                                 <i class="fa fa-user"></i>
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <form method="POST" action="{{ route('auth.login.destroy')}}">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <form method="POST" action="{{ route('auth.login.destroy') }}">
                                     @csrf
                                     <button type="submit" class="dropdown-item">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -109,13 +115,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>&copy; LaraEvents {{ date('Y') }}</span>
-                    </div>
-                </div>
-            </footer>
+
             <!-- End of Footer -->
 
         </div>
