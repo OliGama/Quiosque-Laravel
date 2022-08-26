@@ -28,8 +28,8 @@
 
             <!-- Sidebar - Brand -->
             <div class="sidebar-brand d-flex align-items-center justify-content-center">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-calendar-check"></i>
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-umbrella-beach"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">
                     @yield('menuTitle')
@@ -47,7 +47,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-chair"></i>
                     <span>Mesas</span>
                 </a>
             </li>
