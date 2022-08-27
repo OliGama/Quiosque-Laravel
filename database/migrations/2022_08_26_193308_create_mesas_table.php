@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create ('menus', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
             $table->float('preco');
@@ -30,4 +30,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('menus');
     }
+
 };

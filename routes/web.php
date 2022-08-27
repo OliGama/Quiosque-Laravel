@@ -7,6 +7,7 @@ use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Garcom\Dashboard\DashboardController as GarcomDashboardController;
 use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardController;
+use App\Http\Controllers\Mesas\MesasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,20 @@ Route::group(['as' => 'auth.'], function() {
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('garcom/dashboard', [GarcomDashboardController::class, 'index'])->name('garcom.dashboard.index')->middleware('role:garcom');
+
     Route::get('caixa/dashboard', [CaixaDashboardController::class, 'index'])->name('caixa.dashboard.index')->middleware('role:caixa');
-});
+    
+    Route::get('mesas', [MesasController::class, 'index'])->name('mesas.index')
+    ->middleware('role:garcom');
+
+    Route::get('mesas', [MesasController::class, 'create'])->name('mesas.create')
+    ->middleware('role:garcom');
+
+    Route::get('mesas/{mesa}/edit',[MesaController::class, 'edit'])-> name('mesas.edit');
+
+    Route::post('mesas', [MesasController::class, 'store'])-> name('mesas.store');
+
+
+    });
 
 
