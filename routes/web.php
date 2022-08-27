@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Auth\{
     RegisterController,
     LoginController
@@ -20,19 +21,24 @@ use App\Http\Controllers\Mesas\MesasController;
 |
 */
 
-Route::group(['as' => 'auth.'], function() {
 
-    Route::group([ 'middleware' => 'guest'], function(){
+
+Route::group(['as' => 'auth.'], function () {
+
+    Route::group(['middleware' => 'guest'], function () {
+        Route::get('/', function () {
+            return view('welcome');
+        })->name('welcome');
         Route::get('login', [LoginController::class, 'create'])->name('login.create');
         Route::post('login', [LoginController::class, 'store'])->name('login.store');
     });
-    Route::post('register',[RegisterController::class, 'store'])->name('register.store')->middleware('role:caixa');
+    Route::post('register', [RegisterController::class, 'store'])->name('register.store')->middleware('role:caixa');
     Route::get('register', [RegisterController::class, 'create'])->name('register.create')->middleware('role:caixa');
 
     Route::post('logout', [LoginController::class, 'destroy'])->name('login.destroy')->middleware('auth');
 });
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth'], function () {
     Route::get('garcom/dashboard', [GarcomDashboardController::class, 'index'])->name('garcom.dashboard.index')->middleware('role:garcom');
 
     Route::get('caixa/dashboard', [CaixaDashboardController::class, 'index'])->name('caixa.dashboard.index')->middleware('role:caixa');
