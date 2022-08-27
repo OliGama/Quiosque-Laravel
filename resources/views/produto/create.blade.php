@@ -1,10 +1,15 @@
 @extends('layouts.panel')
 @section('title')
-    Tela de criação
+    Cadastrar produto
 @endsection
-@section('content')
-    <h1 class="text-center my-4">Inserir produto no estoque</h1>
 
+@section('title2')
+    <div class="title d-flex justify-content-center" style="color: black">
+        Inserir produto
+    </div>
+@endsection
+
+@section('content')
     <div class="card shadow my-5 w-75 mx-auto">
         <div class="card-body">
             <form method="POST" action="{{route('produto.store')}}">
@@ -27,7 +32,7 @@
                             <input
                                 type="preco"
                                 name="preco"
-                                class="form-control {{$errors->has('preco') ? 'is-invalid' : ''}}"
+                                class="form-control preco {{$errors->has('preco') ? 'is-invalid' : ''}}"
                                 placeholder="Preço"
                                 value="{{old('preco')}}"
                             >

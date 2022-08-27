@@ -101,7 +101,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">@yield('title')</h1>
+                    <h1 class="h3 mb-4 text-gray-800">@yield('title2')</h1>
 
                     <main class="pb-5">
                         <!-- CONTEÚDO -->
@@ -130,11 +130,11 @@
     </a>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
-
+    <script src="{{ asset('js/Produto/mask.js' )}}"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-mask/jquery.mask.min.js') }}"></script>
 
 </body>
