@@ -8,13 +8,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Quiosque - @yield('title')</title>
+    <title>Quiosque Laravel - @yield('title')</title>
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -27,12 +28,11 @@
 
             <!-- Sidebar - Brand -->
             <div class="sidebar-brand d-flex align-items-center justify-content-center">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-calendar-check"></i>
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-umbrella-beach"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"><a style="text-decoration: none" href="{{ route('caixa.dashboard.index') }}" role="text"
-                        class="text-light">
-                        Quiosque Laravel</a>
+                <div class="sidebar-brand-text mx-3">
+                    <a href="{{ route('caixa.dashboard.index') }}" role="text" class="text-light" style="text-decoration: none; pointer-events: unset; cursor: pointer">Quisque Laravel</a>
                 </div>
             </div>
 
@@ -44,12 +44,21 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-chair"></i>
+                    <span>Mesas</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('produto.index')}}">
                     <i class="fa fa-utensils"></i>
                     <span>Lista de Produtos</span>
                 </a>
             </li>
-            
+
 
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->
@@ -79,7 +88,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    {{-- {{ auth()->user()->name }} --}}
+                                    {{ auth()->user()->name }}
                                 </span>
                                 <i class="fa fa-user"></i>
                             </a>
@@ -103,10 +112,14 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
+                <div class="d-flex align-items-center justify-content-center">
+                    @yield('session')
+                </div>
+
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">@yield('title2')</h1>
+                    <h1 class="h3 mb-4 text-gray-800">@yield('title')</h1>
 
                     <main class="pb-5">
                         <!-- CONTEÚDO -->
@@ -120,7 +133,13 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>&copy; LaraEvents {{ date('Y') }}</span>
+                    </div>
+                </div>
+            </footer>
             <!-- End of Footer -->
 
         </div>
@@ -135,11 +154,12 @@
     </a>
 
     <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/Produto/mask.js' )}}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-mask/jquery.mask.min.js') }}"></script>
 
 </body>

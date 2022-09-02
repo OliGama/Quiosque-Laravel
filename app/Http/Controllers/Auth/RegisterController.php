@@ -28,11 +28,13 @@ class RegisterController extends Controller
             DB::commit();
 
             return redirect()
-                    ->route('auth.login.create')
+                    ->route('caixa.dashboard.index')
                     ->with('success', 'Conta do garçom criada com Sucesso!' );
         }catch(\Exception $exception){
             DB::rollback();
-            return 'Messagem: ' . $exception->getMessage();
+            return redirect()
+                ->route('auth.register.create')
+                ->with('warning', 'Erro a fazer o Cadastro' );
         }
 
 
