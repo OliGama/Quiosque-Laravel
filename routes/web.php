@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::delete('mesas/{mesa}', [MesasController::class, 'destroy'])->name('mesas.destroy');
 
+    Route::post('mesas/{mesa}', [MesasController::class, 'abrir'])->name('mesas.abrir');
+
 });
 
 Route::get('pedido', [PedidoController::class, 'index'])->name('pedido.index');

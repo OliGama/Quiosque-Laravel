@@ -12,7 +12,7 @@ class Mesa extends Model
     protected $fillable = [
         'name',
         'numero',
-
+        'ocupada'
     ];
     
 
