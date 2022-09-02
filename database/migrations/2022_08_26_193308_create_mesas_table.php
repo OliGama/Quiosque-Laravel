@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('mesas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->float('preco');
+            $table->string('numero');
+            $table->boolean('ocupada')->default(false)->nullable();
             $table->timestamps();
         });
     }
@@ -28,7 +28,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('mesas');
     }
 
 };

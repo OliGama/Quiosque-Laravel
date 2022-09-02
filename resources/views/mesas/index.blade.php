@@ -1,28 +1,37 @@
 @extends('layouts.panel')
-@section('title', 'Eventos')
+@section('title', 'Mesas')
 @section('content')
-    <form>
-        <div class="d-flex justify-content-between">
-            <div class="d-flex flex-fill">
-                <input type="text" name="search" class="form-control w-50 mr-2" value="" placeholder="Pesquisar...">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+<form method="GET" action="{{ route('mesas.store') }}">
+    @csrf
+    @foreach ($mesas as $mesa)
+    <div class="container-fluid">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{$mesa->numero}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@if ($mesa->ocupada == 0)
+                    Vazia
+                    @elseif ($mesa->ocupada == 1)
+                    Ocupada
+                    @endif
+                </h6>
+                <p class="card-text"></p>
+                <a href="#" class="card-link">Fazer Pedido</a>
+                @if ($mesa->ocupada == 0)
+                <form action="post" action="{{ route('mesas.edit')}}">
+                    <button type="submit" class="btn btn-success">
+                        Abrir Mesa
+                    </button>
+                </form>
+                @else ($mesa->ocupada == 1)
+                <form method="POST" action="{{ route('mesas.destroy', $mesa->id) }}">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Fechar Mesa
+                    </button>
+                </form>
+                @endif
             </div>
-            <a href="{{ route('mesas.create') }}" class="btn btn-primary">Novo evento</a>
         </div>
-    </form>
-    <table class="table mt-4">
-        <thead class="thead bg-white">
-            <tr>
-                <th>Nome</th>
-                <th>Palestrante</th>
-                <th>Início</th>
-                <th>Fim</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- CONTEÚDO DA TABELA -->
-        </tbody>
-    </table>
-
+    </div>
+    @endforeach
+</form>
 @endsection

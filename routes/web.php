@@ -46,13 +46,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('mesas', [MesasController::class, 'index'])->name('mesas.index')
     ->middleware('role:garcom');
 
-    Route::get('mesas', [MesasController::class, 'create'])->name('mesas.create')
+    Route::get('mesas/create', [MesasController::class, 'create'])->name('mesas.create')
     ->middleware('role:garcom');
 
-    Route::get('mesas/{mesa}/edit',[MesaController::class, 'edit'])-> name('mesas.edit');
+    Route::get('mesas/{mesa}/edit',[MesasController::class, 'edit'])-> name('mesas.edit');
 
     Route::post('mesas', [MesasController::class, 'store'])-> name('mesas.store');
 
+    Route::delete('mesas/{mesa}', [MesasController::class, 'destroy'])->name('mesas.destroy');
 
     });
 

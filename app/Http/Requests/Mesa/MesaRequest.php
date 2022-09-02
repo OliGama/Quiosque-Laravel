@@ -17,7 +17,7 @@ class MesaRequest extends FormRequest
     {
         return [
             'numero' => 'required',
-            'ocupada' => 'required',
+            'ocupada'
         ];
     }
     
