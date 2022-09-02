@@ -1,9 +1,9 @@
 @extends('layouts.panel')
 @section('title', 'Dashboard')
-@section('menuTitle')
+{{-- @section('menuTitle')
     <a href="{{ route('caixa.dashboard.index') }}" role="text" class="text-light"
         style="text-decoration: none; pointer-events: unset; cursor: pointer">Quisque Laravel</a>
-@endsection
+@endsection --}}
 @section('session')
     @if (session()->has('success'))
         <div class="alert-success col-4 align-items-center justify-content-center" data-bs-dismiss="alert" role="alert">

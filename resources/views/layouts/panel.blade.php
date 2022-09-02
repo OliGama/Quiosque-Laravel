@@ -32,7 +32,7 @@
                     <i class="fas fa-umbrella-beach"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">
-                    @yield('menuTitle')
+                    <a href="{{ route('caixa.dashboard.index') }}" role="text" class="text-light" style="text-decoration: none; pointer-events: unset; cursor: pointer">Quisque Laravel</a>
                 </div>
             </div>
 

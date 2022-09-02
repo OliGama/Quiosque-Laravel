@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Garcom\Dashboard\DashboardController as GarcomDashboardController;
 use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardController;
 use App\Http\Controllers\Mesas\MesasController;
+use App\Http\Controllers\Pedido\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('garcom/dashboard', [GarcomDashboardController::class, 'index'])->name('garcom.dashboard.index')->middleware('role:garcom');
 
     Route::get('caixa/dashboard', [CaixaDashboardController::class, 'index'])->name('caixa.dashboard.index')->middleware('role:caixa');
-    
+
     Route::get('mesas', [MesasController::class, 'index'])->name('mesas.index')
     ->middleware('role:garcom');
 
@@ -55,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::delete('mesas/{mesa}', [MesasController::class, 'destroy'])->name('mesas.destroy');
 
-    });
+});
 
+Route::get('pedido', [PedidoController::class, 'index'])->name('pedido.index');
 
