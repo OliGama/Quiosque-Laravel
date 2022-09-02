@@ -56,7 +56,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::delete('mesas/{mesa}', [MesasController::class, 'destroy'])->name('mesas.destroy');
 
-    Route::put('mesas/{mesa}', [MesasController::class, 'abrir'])->name('mesas.abrir');
+    Route::put('mesas/abrir/{mesa}', [MesasController::class, 'abrir'])->name('mesas.abrir');
+
+    Route::put('mesas/fechar/{mesa}', [MesasController::class, 'fechar'])->name('mesas.fechar');
 
 });
 

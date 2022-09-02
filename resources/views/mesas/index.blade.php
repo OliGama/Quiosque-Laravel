@@ -25,8 +25,8 @@
             </form>
 
             @else ($mesa->ocupada == 1)
-            <form method="POST" action="{{ route('mesas.destroy', $mesa->id) }}">
-                @method('delete')
+            <form method="POST" action="{{ route('mesas.fechar', $mesa->id) }}">
+                @method('put')
                 @csrf
 
                 <!-- <form action="{{ $mesa->ocupada == 0 }}"> -->

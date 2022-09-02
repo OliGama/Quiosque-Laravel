@@ -46,12 +46,17 @@ class MesasController extends Controller
             ->with('success', 'Mesa Ocupada!');
     }
 
-    public function abrir(Mesa $id)
-    {
-        $mesas = Mesa::find($id);
-        
-        $mesas->abrir($mesas->ocupada == 1);
+    public function abrir(Mesa $mesa)
+    {        
+        $mesa->update(['ocupada' => true]);
 
-        return view('mesas.index');
+        return redirect()->route('mesas.index');
+    }
+
+    public function fechar(Mesa $mesa)
+    {        
+        $mesa->update(['ocupada' => false]);
+
+        return redirect()->route('mesas.index');
     }
 }
