@@ -33,7 +33,7 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">
                     <a href="/" role="text" class="text-light"
-                        style="text-decoration: none; pointer-events: unset; cursor: pointer">Quisque Laravel</a>
+                        style="text-decoration: none; pointer-events: unset; cursor: pointer">Quiosque Laravel</a>
                 </div>
             </div>
 

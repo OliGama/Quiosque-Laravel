@@ -3,12 +3,14 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Mesa;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class GarcomSeeder extends Seeder
+class MesasSeeder extends Seeder
 {
     /**
      * Run the database seeders.
@@ -18,11 +20,14 @@ class GarcomSeeder extends Seeder
 
     public function run()
     {
-        User::create([
-            'name' => 'djalmaG',
-            'email' => 'djalma@garcom.com',
-            'password' => '12345678',
-            'role' => 'garcom'
-        ]);
+       
+           for($i=1; $i < 9; $i++) {
+            Mesa::create([
+                "numero" => "mesa " .$i,
+                "ocupada" =>  false
+
+         ]);
+           }
+    
     }
 }

@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CaixaSeeder::class,
-            GarcomSeeder::class
+            GarcomSeeder::class,
+            MesasSeeder::class
         ]);
     }
 }
