@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Produto extends Model
+class Pedido extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'nome_produto',
-        'tipo_produto',
-        'preco'
+        'finalizado', 'mesa_id'
     ];
 
     //relationships
 
-    public function pedidos(){
-        return $this->belongsToMany(Pedido::class);
+    public function produtos(){
+        return $this->belongsToMany(Produto::class);
     }
 }

@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('finalizado')->default(0);
+            $table->unsignedInteger('mesa_id');
+
+            $table->foreign('mesa_id')->references('id')->on('mesas');
+            $table->timestamps();
         });
     }
 
@@ -29,3 +33,4 @@ return new class extends Migration
         Schema::dropIfExists('pedidos');
     }
 };
+

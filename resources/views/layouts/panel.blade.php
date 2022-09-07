@@ -52,14 +52,6 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('produto.index')}}">
-                    <i class="fa fa-utensils"></i>
-                    <span>Lista de Produtos</span>
-                </a>
-            </li>
-
-
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->
 
