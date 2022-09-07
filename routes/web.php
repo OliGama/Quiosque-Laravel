@@ -4,10 +4,10 @@ use App\Http\Controllers\Auth\{
     RegisterController,
     LoginController
 };
-use GuzzleHttp\Promise\Create;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Garcom\Dashboard\DashboardController as GarcomDashboardController;
+use App\Http\Controllers\Produto\ProdutoController;
 use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardController;
+use App\Http\Controllers\Garcom\Dashboard\DashboardController as GarcomDashboardController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Mesas\MesasController;
 use App\Http\Controllers\Pedido\PedidoController;
 
@@ -44,6 +44,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('caixa/dashboard', [CaixaDashboardController::class, 'index'])->name('caixa.dashboard.index')->middleware('role:caixa');
 
+<<<<<<< HEAD
+=======
+    Route::resource('produto', ProdutoController::class)
+        ->middleware('role:caixa');
+
+>>>>>>> Marcus
     Route::get('mesas', [MesasController::class, 'index'])->name('mesas.index')
     ->middleware('role:garcom');
 
@@ -53,6 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('mesas/{mesa}/edit',[MesasController::class, 'edit'])-> name('mesas.edit');
 
     Route::post('mesas', [MesasController::class, 'store'])-> name('mesas.store');
+<<<<<<< HEAD
 
     Route::delete('mesas/{mesa}', [MesasController::class, 'destroy'])->name('mesas.destroy');
 
@@ -64,3 +71,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('pedido', [PedidoController::class, 'index'])->name('pedido.index');
 
+=======
+});
+>>>>>>> Marcus
