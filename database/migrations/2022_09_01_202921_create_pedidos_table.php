@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pedidos', function (Blueprint $table) {
-            $table->id();
-            $table->float('precoTotal');
-            $table->timestamps();
+            $table->increments('id');
+            $table->boolean('finalizado')->default(0);
         });
     }
 
