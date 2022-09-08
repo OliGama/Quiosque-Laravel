@@ -21,6 +21,8 @@ return new class extends Migration
 
             $table->foreign('pedido_id')->references('id')->on('pedidos');
             $table->foreign('produto_id')->references('id')->on('produtos');
+
+            $table->timestamps();
         });
     }
 

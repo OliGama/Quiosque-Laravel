@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pedidos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->boolean('finalizado')->default(0);
             $table->unsignedInteger('mesa_id');
 
