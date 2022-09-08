@@ -23,41 +23,51 @@
                                 Abrir Mesa
                             </button>
                         </form>
-                    @else
-                        ($mesa->ocupada == 1)
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
-                            Fazer Pedido
-                        </button>
-                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Tem certeza que quer fazer o
-                                            pedido??</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Fechar</button>
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fazer o
-                                                pedido</button>
-                                        </div>
-                                    </div>
+                    @elseif ($mesa->ocupada == 1)
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <form action="">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop">
+                                            Fazer Pedido
+                                        </button>
+                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">Tem certeza que
+                                                            quer fazer o
+                                                            pedido??</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Fechar</button>
+                                                        <button type="submit" class="btn btn-primary"
+                                                            data-bs-dismiss="modal">Fazer
+                                                            o
+                                                            pedido</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    <form method="POST" action="{{ route('mesas.fechar', $mesa->id) }}">
+                                        @method('put')
+                                        @csrf
+                                        <!-- <form action="{{ $mesa->ocupada == 0 }}"> -->
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            Fechar Mesa
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
-
-                            <form method="POST" action="{{ route('mesas.fechar', $mesa->id) }}">
-                                @method('put')
-                                @csrf
-                                <!-- <form action="{{ $mesa->ocupada == 0 }}"> -->
-                                <button type="submit" class="btn btn-sm btn-danger">
-                                    Fechar Mesa
-                                </button>
-                            </form>
+                        </div>
                     @endif
                 </div>
             </div>
