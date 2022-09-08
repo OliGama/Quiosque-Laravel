@@ -14,7 +14,6 @@
                 @endif
             </h6>
             <p class="card-text"></p>
-            <a href="#" class="card-link">Fazer Pedido</a>
             @if ($mesa->ocupada == 0)
             <form method="POST" action="{{ route('mesas.abrir', $mesa->id) }}">
                 @method('put')
@@ -25,10 +24,13 @@
             </form>
 
             @else ($mesa->ocupada == 1)
+            <form action="">
+                <button type="submit" class="btn btn-sm btn-primary">Fazer pedido</button>
+            </form>
+
             <form method="POST" action="{{ route('mesas.fechar', $mesa->id) }}">
                 @method('put')
                 @csrf
-
                 <!-- <form action="{{ $mesa->ocupada == 0 }}"> -->
                 <button type="submit" class="btn btn-sm btn-danger">
                     Fechar Mesa
