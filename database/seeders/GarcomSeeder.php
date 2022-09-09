@@ -19,7 +19,7 @@ class GarcomSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'djalmaG',
+            'name' => 'Djalma Garcom',
             'email' => 'djalma@garcom.com',
             'password' => '12345678',
             'role' => 'garcom'

@@ -43,6 +43,6 @@
                 </div>
             </div>
         </div>
-        <button type="s ubmit" class="btn btn-success mt-2">Salvar</button>
+        <button type="submit" class="btn btn-success mt-2">Salvar</button>
     </form>
 @endsection

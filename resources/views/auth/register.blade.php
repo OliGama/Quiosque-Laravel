@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Quiosque do Djalma - Cadastro</title>
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/sb-admin-2.min.css') }}">
 </head>
 <body>
-    <h1 class="text-center my-4">Criar Conta do Garçom</h1>
+    <h1 class="text-center text-dark my-4">Cadastrar Garçom</h1>
     <div class="card shadow my-5 w-75 mx-auto">
         <div class="card-body">
             <form action="{{ route('auth.register.store') }}" method="POST">
@@ -17,11 +17,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
+                            <span class="text d-flex">Nome</span>
                             <input
                                 type="text"
                                 name="name"
                                 class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                                placeholder="Nome"
+                                placeholder="Inserir nome"
                                 value="{{ old('name') }}"
                             >
                             <div class="invalid-feedback" >{{ $errors->first('name') }}</div>
@@ -29,11 +30,12 @@
                     </div>
                     <div class="col-12">
                         <div class="form-group">
+                            <span class="text d-flex">E-mail</span>
                             <input
                                 type="email"
                                 name="email"
                                 class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                                placeholder="E-mail"
+                                placeholder="Inserir e-mail"
                                 value="{{ old('email') }}"
                             >
                             <div class="invalid-feedback">{{ $errors->first('email') }}</div>
@@ -41,17 +43,19 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
+                            <span class="text d-flex">Senha</span>
                             <input
                                 type="password"
                                 name="password"
                                 class="form-control  {{ $errors->has('password') ? 'is-invalid' : '' }}"
-                                placeholder="Senha"
+                                placeholder="Inserir senha"
                             >
                             <div class="invalid-feedback">{{ $errors->first('password') }}</div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
+                            <span class="text d-flex">Confirmar senha</span>
                             <input
                                 type="password"
                                 name="password_confirmation"
@@ -62,7 +66,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-success btn-block mt-3">Criar Conta</button>
+                <button type="submit" class="btn btn-primary btn-block mt-3">Criar Conta</button>
             </form>
         </div>
     </div>
