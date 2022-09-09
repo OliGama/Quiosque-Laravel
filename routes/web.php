@@ -63,4 +63,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-Route::get('pedido', [PedidoController::class, 'index'])->name('pedido.index');
+Route::get('pedido/{pedido}', [PedidoController::class, 'index'])->name('pedido.index');
