@@ -1,60 +1,48 @@
-@extends('layouts.app')
+@extends('layouts.panel')
 @section('title')
-    Tela de criação
+    Editar produto
 @endsection
+
+@section('title2')
+<div class="title d-flex justify-content-center" style="color: black">
+    Editar produto
+</div>
+@endsection
+
 @section('content')
-    <h1 class="text-center my-4">Criar conta</h1>
-
-    <div class="card shadow my-5 w-75 mx-auto">
-        <div class="card-body">
-            <form>
-                @csrf
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input
-                                type="email"
-                                name="user[email]"
-                                class="form-control {{$errors->has('user.email') ? 'is-invalid' : ''}}"
-                                placeholder="Nome do produto"
-                                value="{{old('user.email')}}"
-                            >
-                            <div class="invalid-feedback">{{$errors->first('user.email')}}</div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <input
-                                type="password"
-                                name="user[password]"
-                                class="form-control {{$errors->has('user.password') ? 'is-invalid' : ''}}"
-                                placeholder="Quantidade"
-                            >
-                            <div class="invalid-feedback">{{$errors->first('user.password')}}</div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 d-flex  align-center justify-center">
-                        <div class="form-group">
-                            <div class="dropdown show">
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Dropdown link
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">Action</a>
-                                  <a class="dropdown-item" href="#">Another action</a>
-                                  <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <form action="{{ route('produto.update', $produto->id) }}" method="POST" autocomplete="off">
+        @method('PUT')
+        @csrf
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="nome_produto">Nome do produto</label>
+                    <input type="text" class="form-control {{ $errors->has('nome_produto') ? 'is-invalid' : '' }}"
+                        id="nome_produto" name="nome_produto"
+                        value="{{ old('nome_produto', isset($produto) ? $produto->nome_produto : '') }}">
+                    <div class="invalid-feedback">{{ $errors->first('nome_produto') }}</div>
                 </div>
+            </div>
 
-                <button type="submit" class="btn btn-success btn-block mt-3">Criar conta</button>
-            </form>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="preco">Preço</label>
+                    <input type="text" class="form-control preco {{ $errors->has('preco') ? 'is-invalid' : '' }}"
+                        id="preco" name="preco" value="{{ old('preco', isset($produto) ? $produto->preco : '') }}">
+                    <div class="invalid-feedback">{{ $errors->first('preco') }}</div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="tipo_produto">Tipo do produto</label>
+                    <input type="text" class="form-control {{ $errors->has('tipo_produto') ? 'is-invalid' : '' }}"
+                        id="tipo_produto" name="tipo_produto"
+                        value="{{ old('tipo_produto', isset($produto) ? $produto->tipo_produto : '') }}">
+                    <div class="invalid-feedback">{{ $errors->first('tipo_produto') }}</div>
+                </div>
+            </div>
         </div>
-    </div>
-    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('vendor/jquery-mask/jquery.mask.min.js')}}"></script>
-    <script src="{{asset('js/auth/register.js')}}"></script>
+        <button type="s ubmit" class="btn btn-success mt-2">Salvar</button>
+    </form>
 @endsection

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('nome_produto');
             $table->string('tipo_produto');
-            $table->integer('quantidade_produto');
             $table->decimal('preco', 8, 2);
             $table->timestamps();
         });
