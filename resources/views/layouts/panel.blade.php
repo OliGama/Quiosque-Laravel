@@ -40,9 +40,15 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('mesas.index')}}">
                     <i class="fas fa-fw fa-chair"></i>
                     <span>Mesas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('produto.index')}}">
+                    <i class="fa fa-utensils"></i>
+                    <span>Lista de Produtos</span>
                 </a>
             </li>
 
