@@ -6,7 +6,7 @@
 
 @section('title2')
     <div class="d-flex justify-content-center" style="color: #000000">
-        Lista de produtos
+        Lista de Produtos
     </div>
 @endsection
 
@@ -23,7 +23,7 @@
             <tr style="color: #000000">
                 <th scope="col">ID</th>
                 <th scope="col">Nome do Produto</th>
-                <th scope="col">Preço</th>
+                <th scope="col">Preço (R$)</th>
                 <th scope="col">Tipo</th>
                 @if (auth()->user()->role === 'caixa')
                     <th scope="col">Ações</th>
@@ -33,9 +33,9 @@
         <tbody>
             @forelse ($produtos as $produto)
                 <tr style="color: #000000">
-                    <th scope="row">1</th>
+                    <th scope="row">{{$produto->id}}</th>
                     <td>{{ $produto->nome_produto }}</td>
-                    <td>{{ $produto->preco }}</td>
+                    <td>R$ {{ $produto->preco }}</td>
                     <td>{{ $produto->tipo_produto }}</td>
                     @if (auth()->user()->role === 'caixa')
                         <td>

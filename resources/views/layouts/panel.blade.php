@@ -41,12 +41,6 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-chair"></i>
                     <span>Mesas</span>
                 </a>
@@ -111,7 +105,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">@yield('title')</h1>
+                    <h1 class="h3 mb-4 text-gray-800">@yield('title2')</h1>
 
                     <main class="pb-5">
                         <!-- CONTEÚDO -->

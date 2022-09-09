@@ -23,8 +23,6 @@ use App\Http\Controllers\Pedido\PedidoController;
 |
 */
 
-
-
 Route::group(['as' => 'auth.'], function () {
 
     Route::group(['middleware' => 'guest'], function () {
@@ -45,7 +43,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('caixa/dashboard', [CaixaDashboardController::class, 'index'])->name('caixa.dashboard.index')->middleware('role:caixa');
 
-    Route::resource('produto', ProdutoController::class)->middleware('role:caixa');
+    Route::get('produto', [ProdutoController::class, 'index'])->name('produto.index');
+    Route::resource('produto', ProdutoController::class)->except('index')
+        ->middleware('role:caixa');
 
     Route::get('mesas', [MesasController::class, 'index'])->name('mesas.index')->middleware('role:garcom');
 

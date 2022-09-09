@@ -24,8 +24,9 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <input type="preco" name="preco"
+                        <div class="input-group">
+                            <span class="input-group-text">R$</span>
+                            <input type="text" name="preco"
                                 class="form-control preco {{ $errors->has('preco') ? 'is-invalid' : '' }}"
                                 placeholder="Preço" value="{{ old('preco') }}">
                             <div class="invalid-feedback">{{ $errors->first('preco') }}</div>
@@ -33,13 +34,12 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <input
-                                type="tipo_produto"
-                                name="tipo_produto"
-                                class="form-control {{$errors->has('tipo_produto') ? 'is-invalid' : ''}}"
-                                placeholder="Tipo do produto"
-                                value="{{old('tipo_produto')}}"
-                            >
+                            <select class="form-select {{$errors->has('tipo_produto') ? 'is-invalid' : ''}}"  aria-label="Default select example" name="tipo_produto">
+                                <option value="" selected>Selecione um tipo</option>
+                                <option value="Bebida">Bebida</option>
+                                <option value="Pastel">Pastel</option>
+                                <option value="Porcao">Porcao</option>
+                            </select>
                             <div class="invalid-feedback">{{$errors->first('tipo_produto')}}</div>
                         </div>
                     </div>
