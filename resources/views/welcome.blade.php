@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Quiosque Laravel - @yield('title')</title>
+    <title>Quiosque do Djalma - Inicio</title>
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -29,11 +29,11 @@
             <!-- Sidebar - Brand -->
             <div class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-calendar-check"></i>
+                    <i class="fas fa-umbrella-beach"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">
                     <a href="/" role="text" class="text-light"
-                        style="text-decoration: none; pointer-events: unset; cursor: pointer">Quiosque Laravel</a>
+                        style="text-decoration: none; pointer-events: unset; cursor: pointer">Quiosque do Djalma</a>
                 </div>
             </div>
 
@@ -41,15 +41,15 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                <a class="nav-link" href="{{route('mesas.index')}}">
+                    <i class="fas fa-fw fa-chair"></i>
+                    <span>Mesas</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Mesas</span>
+                <a class="nav-link" href="{{route('produto.index')}}">
+                    <i class="fa fa-utensils"></i>
+                    <span>Lista de Produtos</span>
                 </a>
             </li>
 
@@ -159,7 +159,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>&copy; LaraEvents {{ date('Y') }}</span>
+                        <span>&copy; Quiosque do Djalma {{ date('Y') }}</span>
                     </div>
                 </div>
             </footer>

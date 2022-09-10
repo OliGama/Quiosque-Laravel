@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Quiosque Laravel - @yield('title')</title>
+    <title>Quiosque do Djalma - @yield('title')</title>
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -32,7 +32,8 @@
                     <i class="fas fa-umbrella-beach"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">
-                    <a href="{{ route('caixa.dashboard.index') }}" role="text" class="text-light" style="text-decoration: none; pointer-events: unset; cursor: pointer">Quiosque Laravel</a>
+                    <a href="{{ route('caixa.dashboard.index') }}" role="text" class="text-light"
+                        style="text-decoration: none; pointer-events: unset; cursor: pointer">Quiosque do Djalma</a>
                 </div>
             </div>
 
@@ -40,13 +41,13 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('mesas.index')}}">
+                <a class="nav-link" href="{{ route('mesas.index') }}">
                     <i class="fas fa-fw fa-chair"></i>
                     <span>Mesas</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('produto.index')}}">
+                <a class="nav-link" href="{{ route('produto.index') }}">
                     <i class="fa fa-utensils"></i>
                     <span>Lista de Produtos</span>
                 </a>
@@ -128,7 +129,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>&copy; LaraEvents {{ date('Y') }}</span>
+                        <span>&copy; Quiosque do Djalma {{ date('Y') }}</span>
                     </div>
                 </div>
             </footer>
