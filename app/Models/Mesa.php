@@ -14,7 +14,13 @@ class Mesa extends Model
         'numero',
         'ocupada'
     ];
-    
+
+    //relationships
+
+    public function pedidos(){
+        return $this->hasMany(Pedido::class);
+    }
+
 
 }
 
