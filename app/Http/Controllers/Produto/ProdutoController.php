@@ -12,7 +12,9 @@ class ProdutoController extends Controller
 {
     public function index()
     {
-        return view('produto.index', ['produtos' => Produto::all()]);
+        return view('produto.index', [
+            'produtos' => Produto::paginate(10)
+        ]);
     }
 
     public function create()

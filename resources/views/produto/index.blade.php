@@ -11,13 +11,24 @@
 @endsection
 
 @section('content')
-    @if(auth()->user()->role === 'caixa')
-        <div class="container d-flex justify-content-end" style="margin-bottom: 5px">
-            <div class="btn btn-success"><a style="color: #000000; font-weight: bold; text-decoration: none"
-                    href="{{ route('produto.create') }}">Inserir produto</a>
+    <div class="d-flex">
+        <form class="col-9">
+            <div class="flex mb-4" >
+                <div class="d-flex align-items-center">
+                    <span style="font-weight: bold">Buscar produto</span>
+                    <input type="text" name="search" class="form-control w-50 mr-2" style="margin-left: 5px" value="" placeholder="Pesquisar...">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                </div>
             </div>
-        </div>
-    @endif
+        </form>
+        @if(auth()->user()->role === 'caixa')
+            <div class="container d-flex justify-content-end col-3" style="margin-bottom: 5px">
+                <div class="btn btn-success"><a style="color: #000000; font-weight: bold; text-decoration: none; height: 10px"
+                        href="{{ route('produto.create') }}">Inserir produto</a>
+                </div>
+            </div>
+        @endif
+    </div>
     <table class="table table-hover">
         <thead>
             <tr style="color: #000000">
@@ -61,4 +72,6 @@
             @endforelse
         </tbody>
     </table>
+
+    {{$produtos->links()}}
 @endsection
