@@ -11,6 +11,7 @@ use App\Http\Controllers\Garcom\Dashboard\DashboardController as GarcomDashboard
 use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardController;
 use App\Http\Controllers\Mesas\MesasController;
 use App\Http\Controllers\Pedido\PedidoController;
+use App\Http\Controllers\Pedido\PedidoProdutoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::put('mesas/fechar/{mesa}', [MesasController::class, 'fechar'])->name('mesas.fechar');
 
+    //Rotas para Pedidos
+    Route::post('pedidos/{id}', [PedidoController::class, 'create'])->name('pedidos.create');
+    Route::get('pedido/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
+    Route::post('pedidos/{pedido}/produto', [PedidoProdutoController::class, 'store'])->name('pedido.produto.store');
+
 });
 
-Route::get('pedido/{pedido}', [PedidoController::class, 'index'])->name('pedido.index');
+
