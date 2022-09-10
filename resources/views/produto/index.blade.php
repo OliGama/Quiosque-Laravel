@@ -157,15 +157,22 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-lg-6">
+                                                        <div class="col-12 col-md-6">
                                                             <div class="form-group">
-                                                                <label for="tipo_produto">Tipo do produto</label>
-                                                                <input type="text"
-                                                                    class="form-control {{ $errors->has('tipo_produto') ? 'is-invalid' : '' }}"
-                                                                    id="tipo_produto" name="tipo_produto"
-                                                                    value="{{ old('tipo_produto', isset($produto) ? $produto->tipo_produto : '') }}">
+                                                                <select
+                                                                    class="form-select {{ $errors->has('tipo_produto') ? 'is-invalid' : '' }}"
+                                                                    aria-label="Default select example"
+                                                                    name="tipo_produto">
+                                                                    <option value="" selected>
+                                                                        {{ old('tipo_produto', isset($produto) ? $produto->tipo_produto : '') }}
+                                                                    </option>
+                                                                    <option value="Bebida">Bebida</option>
+                                                                    <option value="Pastel">Pastel</option>
+                                                                    <option value="Porcao">Porcao</option>
+                                                                </select>
                                                                 <div class="invalid-feedback">
-                                                                    {{ $errors->first('tipo_produto') }}</div>
+                                                                    {{ $errors->first('tipo_produto') }}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
