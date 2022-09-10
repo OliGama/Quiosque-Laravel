@@ -19,7 +19,7 @@ class CaixaSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'djalma',
+            'name' => 'Djalma Caixa',
             'email' => 'djalma@caixa.com',
             'password' => '12345678',
             'role' => 'caixa'

@@ -18,11 +18,52 @@
     @endif
 @endsection
 @section('content')
-    Dashboard do Caixa
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-outline-primary active shadow" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Cadastrar Garçom</button>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <span class="text d-flex">Lista de Garçons</span>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    @foreach ($garcons as $garcom)
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        {{ $garcom->name }}
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>{{ $garcom->email }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
     <div class="col">
-        <button class="btn btn-outline-primary active" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Cadastrar Garçom</button>
+
         <!-- <a class="btn btn-primary" role="button"  href="{{ route('auth.register.create') }}">Cadastrar Garçom</a> -->
 
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
