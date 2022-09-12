@@ -1,78 +1,119 @@
 @extends('layouts.panel')
 @section('title', 'Mesas')
 @section('content')
-    <!-- <form method="GET" action="{{ route('mesas.store') }}"> -->
-    @foreach ($mesas as $mesa)
-        <div class="container-fluid">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $mesa->numero }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        @if ($mesa->ocupada == 0)
-                            Vazia
-                        @elseif ($mesa->ocupada == 1)
-                            Ocupada
-                        @endif
-                    </h6>
-                    <p class="card-text"></p>
-                    @if ($mesa->ocupada == 0)
-                        <form method="POST" action="{{ route('mesas.abrir', $mesa->id) }}">
-                            @method('put')
-                            @csrf
-                            <button type="submit" class="btn btn-sm btn-success">
-                                Abrir Mesa
-                            </button>
-                        </form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                @foreach ($mesas as $mesa)
+                    <div
+                        class="card @if ($mesa->ocupada == 0) text-bg-success mb-3
                     @elseif ($mesa->ocupada == 1)
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <form method="POST" action="{{ route('pedidos.create', $mesa->id) }}">
-                                        @csrf
-                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop">
-                                            Fazer Pedido
-                                        </button>
-                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="staticBackdropLabel">Tem certeza que
-                                                            quer fazer o
-                                                            pedido??</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Fechar</button>
-                                                        <button type="submit" class="btn btn-primary"
-                                                            data-bs-dismiss="modal">Fazer
-                                                            o
-                                                            pedido</button>
+                    text-bg-danger mb-3 @endif">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase">{{ $mesa->numero }}</h5>
+                            <h6 class="card-subtitle mb-2 text-dark">
+                                @if ($mesa->ocupada == 0)
+                                    Vazia
+                                @elseif ($mesa->ocupada == 1)
+                                    Ocupada
+                                @endif
+                            </h6>
+                            <p class="card-text"></p>
+                            @if ($mesa->ocupada == 0)
+                                <form method="POST" action="{{ route('mesas.abrir', $mesa->id) }}">
+                                    @method('put')
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-outline-success active">
+                                        Abrir Mesa
+                                    </button>
+                                </form>
+                            @elseif ($mesa->ocupada == 1)
+                                <div class="container-fluid">
+                                    <div class="col">
+
+                                        <form method="POST" action="{{ route('pedidos.create', $mesa->id) }}">
+                                            @csrf
+                                            <div class="row">
+                                                <button type="button" class="col-7 btn btn-outline-primary active btn-sm"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#staticBackdrop{{ $mesa->id }}">
+                                                    Fazer Pedido
+                                                </button>
+                                                <div class="modal fade" id="staticBackdrop{{ $mesa->id }}"
+                                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-dark" id="staticBackdropLabel">
+                                                                    Tem certeza?</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <span class="text-secondary">Pedido para
+                                                                    {{ $mesa->numero }}</span>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Fechar</button>
+                                                                <button type="submit" class="btn btn-outline-primary active"
+                                                                    data-bs-dismiss="modal">Fazer
+                                                                    o
+                                                                    pedido</button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                    </form>
+                                        </form>
+                                        <form method="POST" action="{{ route('mesas.fechar', $mesa->id) }}">
+                                            @method('put')
+                                            @csrf
+                                            <div class="row">
+                                                <button type="button" class="col-7 btn btn-warning btn-sm"
+                                                    style="margin-top: 3px" data-bs-toggle="modal"
+                                                    data-bs-target="#staticBackdropDelete{{ $mesa->id }}">
+                                                    Fechar Mesa
+                                                </button>
+                                                <div class="modal fade" id="staticBackdropDelete{{ $mesa->id }}"
+                                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-dark" id="staticBackdropLabel">
+                                                                    Tem
+                                                                    certeza?</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <span class="text-secondary">Fechar a
+                                                                    {{ $mesa->numero }}</span>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Fechar</button>
+                                                                <button type="submit" style="margin-top: 3px"
+                                                                    class="btn btn btn-danger">
+                                                                    Fechar Mesa
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <form method="POST" action="{{ route('mesas.fechar', $mesa->id) }}">
-                                        @method('put')
-                                        @csrf
-                                        <!-- <form action="{{ $mesa->ocupada == 0 }}"> -->
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            Fechar Mesa
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
+                            @endif
                         </div>
-                    @endif
-                </div>
+                    </div>
+                    <br>
+                @endforeach
             </div>
         </div>
-    @endforeach
-    <!-- </form> -->
+    </div>
+
 @endsection

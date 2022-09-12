@@ -24,7 +24,7 @@ class PedidoRequest extends FormRequest
     public function rules()
     {
         return [
-            'mesa_id' => 'required'
+            'mesa_id' => 'required',
         ];
     }
 }

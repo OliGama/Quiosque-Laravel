@@ -25,48 +25,57 @@ use App\Http\Controllers\Pedido\PedidoProdutoController;
 */
 
 Route::group(['as' => 'auth.'], function () {
-
+//Rotas livres para todos visitantes
     Route::group(['middleware' => 'guest'], function () {
+
+
+        //Rota para Welcome
         Route::get('/', function () {
             return view('welcome');
         })->name('welcome');
+
+
+        //Rotas para Login
         Route::get('login', [LoginController::class, 'create'])->name('login.create');
         Route::post('login', [LoginController::class, 'store'])->name('login.store');
     });
+//Rotas protegidas
+
+
+    //Rotas para Register
     Route::post('register', [RegisterController::class, 'store'])->name('register.store')->middleware('role:caixa');
     Route::get('register', [RegisterController::class, 'create'])->name('register.create')->middleware('role:caixa');
 
+
+    //Rota para Logout
     Route::post('logout', [LoginController::class, 'destroy'])->name('login.destroy')->middleware('auth');
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('garcom/dashboard', [GarcomDashboardController::class, 'index'])->name('garcom.dashboard.index')->middleware('role:garcom');
 
+
+    //Rotas para Caixa e Garçom
+    Route::get('garcom/dashboard', [GarcomDashboardController::class, 'index'])->name('garcom.dashboard.index')->middleware('role:garcom');
     Route::get('caixa/dashboard', [CaixaDashboardController::class, 'index'])->name('caixa.dashboard.index')->middleware('role:caixa');
 
+
+    //Rotas para Produtos
     Route::get('produto', [ProdutoController::class, 'index'])->name('produto.index');
-    Route::resource('produto', ProdutoController::class)->except('index')
-        ->middleware('role:caixa');
+    Route::resource('produto', ProdutoController::class)->except('index')->middleware('role:caixa');
 
-    Route::get('mesas', [MesasController::class, 'index'])->name('mesas.index')->middleware('role:garcom');
 
-    Route::get('mesas/create', [MesasController::class, 'create'])->name('mesas.create')->middleware('role:garcom');
-
-    Route::get('mesas/{mesa}/edit',[MesasController::class, 'edit'])-> name('mesas.edit');
-
-    Route::post('mesas', [MesasController::class, 'store'])-> name('mesas.store');
-
+    //Rotas para Mesas
+    Route::get('mesas', [MesasController::class, 'index'])->name('mesas.index');
+    Route::get('mesas/create', [MesasController::class, 'create'])->name('mesas.create')->middleware('role:caixa');
+    Route::get('mesas/{mesa}/edit', [MesasController::class, 'edit'])->name('mesas.edit');
+    Route::post('mesas', [MesasController::class, 'store'])->name('mesas.store');
     Route::delete('mesas/{mesa}', [MesasController::class, 'destroy'])->name('mesas.destroy');
-
     Route::put('mesas/abrir/{mesa}', [MesasController::class, 'abrir'])->name('mesas.abrir');
-
     Route::put('mesas/fechar/{mesa}', [MesasController::class, 'fechar'])->name('mesas.fechar');
+
 
     //Rotas para Pedidos
     Route::post('pedidos/{id}', [PedidoController::class, 'create'])->name('pedidos.create');
     Route::get('pedido/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
     Route::post('pedidos/{pedido}/produto', [PedidoProdutoController::class, 'store'])->name('pedido.produto.store');
-
 });
-
-

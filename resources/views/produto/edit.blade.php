@@ -4,9 +4,9 @@
 @endsection
 
 @section('title2')
-<div class="title d-flex justify-content-center" style="color: black">
-    Editar produto
-</div>
+    <div class="title d-flex justify-content-center" style="color: black">
+        Editar produto
+    </div>
 @endsection
 
 @section('content')

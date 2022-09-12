@@ -44,7 +44,6 @@
                                         <div class="invalid-feedback">{{ $errors->first('email') }}</div>
                                     </div>
                                 </div>
-
                                 <div class="col-12">
                                     <div class="form-group">
                                         <span class="text d-flex">Senha</span>

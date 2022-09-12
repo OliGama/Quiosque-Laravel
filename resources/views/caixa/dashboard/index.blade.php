@@ -17,28 +17,22 @@
         </div>
     @endif
 @endsection
+@section('title2')
+    <div class="d-flex justify-content-center text-dark">
+        <span>Lista de Garçons</span>
+    </div>
+@endsection
 @section('content')
-
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <button class="btn btn-outline-primary active shadow" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Cadastrar Garçom</button>
+                <div class="container d-flex justify-content-end">
+                    <button class="btn btn-outline-primary active shadow" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Cadastrar Garçom</button>
+                </div>
             </div>
         </div>
     </div>
-
-    <br>
-    <br>
-
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <span class="text d-flex">Lista de Garçons</span>
-            </div>
-        </div>
-    </div>
-
     <br>
 
     @foreach ($garcons as $garcom)
@@ -63,9 +57,6 @@
     @endforeach
 
     <div class="col">
-
-        <!-- <a class="btn btn-primary" role="button"  href="{{ route('auth.register.create') }}">Cadastrar Garçom</a> -->
-
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasRightLabel">Cadastrar Garçom</h5>
