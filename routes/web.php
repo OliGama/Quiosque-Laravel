@@ -78,4 +78,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('pedidos/{id}', [PedidoController::class, 'create'])->name('pedidos.create');
     Route::get('pedido/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
     Route::post('pedidos/{pedido}/produto', [PedidoProdutoController::class, 'store'])->name('pedido.produto.store');
+    Route::get('pedido/{pedido}/edit', [PedidoController::class, 'edit'])->name('pedidos.edit');
 });
