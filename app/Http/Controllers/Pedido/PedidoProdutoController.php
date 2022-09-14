@@ -13,6 +13,6 @@ class PedidoProdutoController extends Controller
 
         $produto->pedidos()->attach($pedido->id);
 
-        return back()->with('success', 'Pedido realizado com sucesso!');
+        return back()->with('success', 'Pedido adicionado com sucesso!');
     }
 }
