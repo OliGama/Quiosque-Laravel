@@ -2,7 +2,7 @@
 @section('title', 'Pedidos')
 @section('content')
     <div class="card mt-4">
-        <div class="card-header text-white" style="background-color: #4e73df">Produtos</div>
+        <div class="card-header text-white" style="background-color: #4e73df">Pedido</div>
         <div class="card-body">
             <form method="POST" action="{{ route('pedido.produto.store', $pedido->id) }}">
                 @csrf
@@ -39,12 +39,16 @@
                 <tbody>
                     <td>Coca Cola</td>
                     <td>2</td>
-                    <td class="text-end">botao</td>
+                    <td class="text-end">
+                        <button type="submit" class="btn btn-sm btn-danger confirm-submit">
+                            <i style="color: #000" class="fa fa-trash"></i>
+                        </button>
+                    </td>
                 </tbody>
             </table>
             <div class="col d-flex justify-content-end gap-2">
                 <button type="submit" class="btn btn-md btn-outline-primary active">Enviar</button>
-                <button type="submit" class="btn btn-md btn-outline-primary">Concluir</button>
+                <button type="submit" class="btn btn-md btn-secondary">Concluir</button>
             </div>
         </div>
     </div>

@@ -79,4 +79,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('pedido/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
     Route::post('pedidos/{pedido}/produto', [PedidoProdutoController::class, 'store'])->name('pedido.produto.store');
     Route::get('pedido/{pedido}/edit', [PedidoController::class, 'edit'])->name('pedidos.edit');
+    Route::delete('pedidos/{pedido}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
 });
