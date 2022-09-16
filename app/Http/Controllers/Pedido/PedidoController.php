@@ -72,7 +72,9 @@ class PedidoController extends Controller
     public function destroy(Pedido $pedido){
 
         $pedido->update(['finalizado' => true]) ;
+        $pedido->mesa->update(['ocupada' => false]);
         $pedido->delete();
+
 
         return redirect()->route('mesas.index')->with('success', 'Pedido Finalizado com Sucesso!');
     }
