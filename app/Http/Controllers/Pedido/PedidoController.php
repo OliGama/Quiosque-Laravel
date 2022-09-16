@@ -68,4 +68,12 @@ class PedidoController extends Controller
             'mesa' => $mesa
         ]);
     }
+
+    public function destroy(Pedido $pedido){
+
+        $pedido->update(['finalizado' => true]) ;
+        $pedido->delete();
+
+        return redirect()->route('mesas.index')->with('success', 'Pedido Finalizado com Sucesso!');
+    }
 }
