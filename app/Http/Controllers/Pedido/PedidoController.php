@@ -28,12 +28,15 @@ class PedidoController extends Controller
         return redirect()->route('pedidos.show', $pedido);
     }
 
-    public function show($mesa_id)
+    public function show(Pedido $pedido)
     {
-        $mesa = Mesa::find($mesa_id);
-        $pedido = Pedido::where('mesa_id', $mesa_id)->where('finalizado', 0)->first();
+        $mesa = Mesa::find($pedido->mesa_id);
         $allProdutos = Produto::all();
-        return view('pedidos.show', compact('pedido', 'allProdutos', 'mesa_id'));
+        return view('pedidos.show', [
+            'pedido' => $pedido,
+            'allProdutos' => $allProdutos,
+            'mesa' => $mesa
+        ]);
     }
 
     public function edit( $mesa_id)
@@ -64,12 +67,5 @@ class PedidoController extends Controller
             'allProdutos' => Produto::all(),
             'mesa_id' => $mesa
         ]);
-    }
-
-    public function destroy(Mesa $mesa)
-    {
-        $mesa->update(['ocupada' => false]);
-
-        return redirect()->route('mesas.index');
     }
 }
