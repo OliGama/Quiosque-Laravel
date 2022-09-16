@@ -8,22 +8,27 @@
                 @csrf
                 <div class="row">
                     <div class="col-12 col-lg-5">
-                        <select class="form-control" name="produto_id">
+                        <select
+                            class="form-control
+                        @if ($errors->has('produto_id')) is-invalid @endif"
+                            name="produto_id">
                             <option value="" disabled selected>Selecione um produto</option>
                             @foreach ($allProdutos as $produto)
-                                <option value="{{ $produto->id }}">
+                                <option value="{{ $produto->id }}" @if (old('produto_id') == $produto->id) selected  @endif>
                                     {{ $produto->nome_produto }} -- R$ {{ $produto->preco }}
                                 </option>
                             @endforeach
                         </select>
+                        <div class="invalid-feedback">{{ $errors->first('produto_id') }}</div>
                     </div>
                     <div class="col-12 col-lg-2">
-                        <select class="form-control" name="quantidade">
+                        <select class="form-control @if ($errors->has('quantidade')) is-invalid @endif" name="quantidade">
                             <option value="" disabled selected>Selecione uma quantidade</option>
                             @for ($i = 1; $i < 11; $i++)
-                                <option value={{ $i }}>{{ $i }}</option>
+                                <option value={{ $i }} @if (old('quantidade') == $i) selected  @endif>{{ $i }}</option>
                             @endfor
                         </select>
+                        <div class="invalid-feedback">{{ $errors->first('quantidade') }}</div>
                     </div>
                     <div class="col-12 col-lg-2">
                         <button type="submit" class="btn btn-md btn-outline-primary active">Incluir</button>
@@ -42,13 +47,15 @@
                             <td>{{ $produto->nome_produto }}</td>
                             <td>{{ $produto->pivot->quantidade }}</td>
                             <td class="text-end">
-                                <form method="POST" action="{{ route('pedido.produto.destroy', [
-                                    'pedido' => $pedido->id,
-                                    'produto' => $produto->id
-                                ]) }}">
+                                <form method="POST"
+                                    action="{{ route('pedido.produto.destroy', [
+                                        'pedido' => $pedido->id,
+                                        'produto' => $produto->id,
+                                    ]) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger confirm-submit" name="{{ $pedido->id }}">
+                                    <button type="submit" class="btn btn-sm btn-danger confirm-submit"
+                                        name="{{ $pedido->id }}">
                                         <i style="color: #000" class="fa fa-trash"></i>
                                     </button>
                                 </form>
