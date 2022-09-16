@@ -12,8 +12,8 @@
         <div class="flex mb-4" >
             <div class="d-flex align-items-center">
                 <span style="font-weight: bold">Buscar produto</span>
-                <input type="text" name="search" class="form-control w-50 mr-2" style="margin-left: 5px" value="{{ $search }}" placeholder="Pesquisar...">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                <input type="text" name="search" class="form-control w-50 mr-2 shadow" style="margin-left: 5px" value="{{ $search }}" placeholder="Pesquisar...">
+                <button type="submit" class="btn btn-md btn-outline-primary active shadow"><i class="fa fa-search"></i></button>
             </div>
         </div>
     </form>
@@ -66,7 +66,7 @@
                                                         <option value="" disabled selected>Selecione um tipo</option>
                                                         <option value="Bebida">Bebida</option>
                                                         <option value="Pastel">Pastel</option>
-                                                        <option value="Porcao">Porcao</option>
+                                                        <option value="Porção">Porção</option>
                                                     </select>
                                                     <div class="invalid-feedback">{{ $errors->first('tipo_produto') }}
                                                     </div>
@@ -110,7 +110,7 @@
                     @if (auth()->user()->role === 'caixa')
                         <td>
                             <div class="d-flex align-items-center">
-                                <button type="button" class="btn btn-sm btn-warning mr-2" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-sm btn-warning mr-2 shadow-sm" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal{{ $produto->id }}">
                                     <i class="fa fa-edit"></i>
                                 </button>
@@ -187,7 +187,7 @@
                                 <form action="{{ route('produto.destroy', $produto->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger confirm-submit">
+                                    <button type="submit" class="btn btn-sm btn-danger shadow-sm confirm-submit">
                                         <i style="color: #000" class="fa fa-trash"></i>
                                     </button>
                                 </form>
