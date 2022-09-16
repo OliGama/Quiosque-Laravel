@@ -8,6 +8,15 @@
     </div>
 @endsection
 @section('content')
+    <form class ="col-9">
+        <div class="flex mb-4" >
+            <div class="d-flex align-items-center">
+                <span style="font-weight: bold">Buscar produto</span>
+                <input type="text" name="search" class="form-control w-50 mr-2" style="margin-left: 5px" value="{{ $search }}" placeholder="Pesquisar...">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </form>
     @if (auth()->user()->role === 'caixa')
         <div class="container-fluid">
             <div class="row">
@@ -97,7 +106,7 @@
                     <th scope="row">{{ $produto->id }}</th>
                     <td>{{ $produto->nome_produto }}</td>
                     <td>{{ $produto->tipo_produto }}</td>
-                    <td>R$ {{ $produto->preco }}</td>
+                    <td>R$ {{ number_format($produto->preco, 2, ",") }}</td>
                     @if (auth()->user()->role === 'caixa')
                         <td>
                             <div class="d-flex align-items-center">
@@ -156,7 +165,7 @@
                                                                     </option>
                                                                     <option value="Bebida">Bebida</option>
                                                                     <option value="Pastel">Pastel</option>
-                                                                    <option value="Porcao">Porcao</option>
+                                                                    <option value="Porção">Porção</option>
                                                                 </select>
                                                                 <div class="invalid-feedback">
                                                                     {{ $errors->first('tipo_produto') }}
@@ -194,6 +203,7 @@
         </tbody>
     </table>
 
+    {{$produtos->withQueryString()->links()}}
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-mask/jquery.mask.min.js') }}"></script>
     <script src="{{ asset('js/Produto/mask.js') }}"></script>

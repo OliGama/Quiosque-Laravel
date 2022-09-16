@@ -69,27 +69,27 @@ class ProdutoSeeder extends Seeder
         //Porções
         Produto::create([
             'nome_produto' => 'Batata Frita',
-            'tipo_produto' => 'Porcao',
+            'tipo_produto' => 'Porção',
             'preco' => '15.00'
         ]);
         Produto::create([
             'nome_produto' => 'Camarao',
-            'tipo_produto' => 'Porcao',
+            'tipo_produto' => 'Porção',
             'preco' => '15.00'
         ]);
         Produto::create([
             'nome_produto' => 'Polenta',
-            'tipo_produto' => 'Porcao',
+            'tipo_produto' => 'Porção',
             'preco' => '15.00'
         ]);
         Produto::create([
             'nome_produto' => 'Bacon',
-            'tipo_produto' => 'Porcao',
+            'tipo_produto' => 'Porção',
             'preco' => '15.00'
         ]);
         Produto::create([
             'nome_produto' => 'Amendoim',
-            'tipo_produto' => 'Porcao',
+            'tipo_produto' => 'Porção',
             'preco' => '15.00'
         ]);
     }
