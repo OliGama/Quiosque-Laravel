@@ -39,7 +39,7 @@ class PedidoController extends Controller
         ]);
     }
 
-    public function edit( $mesa_id)
+    public function edit($mesa_id)
     {
 
         $mesa = Mesa::find($mesa_id);
@@ -65,7 +65,7 @@ class PedidoController extends Controller
         return view('pedidos.edit', [
             'pedido' => $pedido,
             'allProdutos' => Produto::all(),
-            'mesa_id' => $mesa
+            'mesa' => $mesa
         ]);
     }
 }
