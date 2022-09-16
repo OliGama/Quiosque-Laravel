@@ -47,16 +47,16 @@ class MesasController extends Controller
     }
 
     public function abrir(Mesa $mesa)
-    {        
+    {
         $mesa->update(['ocupada' => true]);
 
-        return redirect()->route('mesas.index');
+        return redirect()->route('mesas.index')->with('success', $mesa->numero.' aberta com sucesso');
     }
 
     public function fechar(Mesa $mesa)
-    {        
+    {
         $mesa->update(['ocupada' => false]);
 
-        return redirect()->route('mesas.index');
+        return redirect()->route('mesas.index')->with('success', $mesa->numero.' fechada com sucesso');
     }
 }

@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             CaixaSeeder::class,
             GarcomSeeder::class,
             MesasSeeder::class,
-            ProdutosSeeder::class
+            ProdutoSeeder::class
         ]);
     }
 }

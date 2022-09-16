@@ -10,10 +10,17 @@ use App\Models\User;
 
 class ProdutoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $produtos = Produto::query();
+
+        if(isset($request->search) && $request->search !== ''){
+            $produtos->where('nome_produto', 'like', '%'.$request->search.'%');
+        }
+
         return view('produto.index', [
-            'produtos' => Produto::paginate(10)
+            'produtos' => $produtos->paginate(10),
+            'search' => isset($request->search) ? $request->search : ''
         ]);
     }
 

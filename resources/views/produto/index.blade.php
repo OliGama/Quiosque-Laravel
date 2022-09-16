@@ -1,27 +1,24 @@
 @extends('layouts.panel')
-
 @section('title')
     Produtos
 @endsection
-
 @section('title2')
-    <div class="d-flex justify-content-center" style="color: #000000">
+    <div class="d-flex justify-content-center text-dark">
         Lista de Produtos
     </div>
 @endsection
-
 @section('content')
-    <form class="col-9">
+    <form class ="col-9">
         <div class="flex mb-4" >
             <div class="d-flex align-items-center">
                 <span style="font-weight: bold">Buscar produto</span>
-                <input type="text" name="search" class="form-control w-50 mr-2" style="margin-left: 5px" value="" placeholder="Pesquisar...">
+                <input type="text" name="search" class="form-control w-50 mr-2" style="margin-left: 5px" value="{{ $search }}" placeholder="Pesquisar...">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
             </div>
         </div>
     </form>
     @if (auth()->user()->role === 'caixa')
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col">
                     <div class="container d-flex justify-content-end" style="margin-bottom: 5px">
@@ -66,7 +63,7 @@
                                                     <select
                                                         class="form-select {{ $errors->has('tipo_produto') ? 'is-invalid' : '' }}"
                                                         aria-label="Default select example" name="tipo_produto">
-                                                        <option value="" selected>Selecione um tipo</option>
+                                                        <option value="" disabled selected>Selecione um tipo</option>
                                                         <option value="Bebida">Bebida</option>
                                                         <option value="Pastel">Pastel</option>
                                                         <option value="Porcao">Porcao</option>
@@ -93,7 +90,7 @@
     @endif
     <table class="table table-hover">
         <thead>
-            <tr style="color: #000000">
+            <tr class="text-dark" style="background-color: rgb(230, 228, 228)">
                 <th scope="col">ID</th>
                 <th scope="col">Nome do Produto</th>
                 <th scope="col">Tipo</th>
@@ -105,28 +102,23 @@
         </thead>
         <tbody>
             @forelse ($produtos as $produto)
-                <tr style="color: #000000">
+                <tr class="text-dark">
                     <th scope="row">{{ $produto->id }}</th>
                     <td>{{ $produto->nome_produto }}</td>
                     <td>{{ $produto->tipo_produto }}</td>
-                    <td>R$ {{ $produto->preco }}</td>
+                    <td>R$ {{ number_format($produto->preco, 2, ",") }}</td>
                     @if (auth()->user()->role === 'caixa')
                         <td>
                             <div class="d-flex align-items-center">
-
-
-                                <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-sm btn-warning mr-2" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <i style="color: #000000" class="fa fa-edit"></i>
+                                    data-bs-target="#exampleModal{{ $produto->id }}">
+                                    <i class="fa fa-edit"></i>
                                 </button>
-
-                                <!-- Modal -->
                                 <form action="{{ route('produto.update', $produto->id) }}" method="POST"
                                     autocomplete="off">
                                     @method('PUT')
                                     @csrf
-                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    <div class="modal fade" id="exampleModal{{ $produto->id }}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -148,11 +140,9 @@
                                                                     {{ $errors->first('nome_produto') }}</div>
                                                             </div>
                                                         </div>
-
                                                         <div class="col-lg-6">
                                                             <label for="preco">Preço</label>
                                                             <div class="input-group">
-
                                                                 <span class="input-group-text">R$</span>
                                                                 <input type="text"
                                                                     class="form-control preco {{ $errors->has('preco') ? 'is-invalid' : '' }}"
@@ -162,16 +152,24 @@
                                                                     {{ $errors->first('preco') }}</div>
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-lg-6">
+                                                        <div class="col-12 col-md-6">
                                                             <div class="form-group">
-                                                                <label for="tipo_produto">Tipo do produto</label>
-                                                                <input type="text"
-                                                                    class="form-control {{ $errors->has('tipo_produto') ? 'is-invalid' : '' }}"
-                                                                    id="tipo_produto" name="tipo_produto"
-                                                                    value="{{ old('tipo_produto', isset($produto) ? $produto->tipo_produto : '') }}">
+                                                                <select
+                                                                    class="form-select {{ $errors->has('tipo_produto') ? 'is-invalid' : '' }}"
+                                                                    aria-label="Default select example"
+                                                                    name="tipo_produto">
+                                                                    <option
+                                                                        value="{{ old('tipo_produto', isset($produto) ? $produto->tipo_produto : '') }}"
+                                                                        selected disabled>
+                                                                        {{ old('tipo_produto', isset($produto) ? $produto->tipo_produto : '') }}
+                                                                    </option>
+                                                                    <option value="Bebida">Bebida</option>
+                                                                    <option value="Pastel">Pastel</option>
+                                                                    <option value="Porção">Porção</option>
+                                                                </select>
                                                                 <div class="invalid-feedback">
-                                                                    {{ $errors->first('tipo_produto') }}</div>
+                                                                    {{ $errors->first('tipo_produto') }}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -186,12 +184,11 @@
                                         </div>
                                     </div>
                                 </form>
-
                                 <form action="{{ route('produto.destroy', $produto->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger confirm-submit">
-                                        <i style="color: #000000" class="fa fa-trash"></i>
+                                        <i style="color: #000" class="fa fa-trash"></i>
                                     </button>
                                 </form>
                             </div>
@@ -200,13 +197,13 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="text-center">Não há dados no momento</td>
+                    <td colspan="5" class="text-center text-dark">Não há dados no momento</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
 
-    {{$produtos->links()}}
+    {{$produtos->withQueryString()->links()}}
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-mask/jquery.mask.min.js') }}"></script>
     <script src="{{ asset('js/Produto/mask.js') }}"></script>
