@@ -56,6 +56,7 @@ class MesasController extends Controller
     public function fechar(Mesa $mesa)
     {
         $mesa->update(['ocupada' => false]);
+        $mesa->pedidos();
 
         return redirect()->route('mesas.index')->with('success', $mesa->numero.' fechada com sucesso');
     }

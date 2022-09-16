@@ -2,7 +2,7 @@
 @section('title', 'Pedidos')
 @section('content')
     <div class="card mt-4">
-        <div class="card-header text-white" style="background-color: #4e73df">Editar Pedido</div>
+        <div class="card-header text-white" style="background-color: #4e73df">Pedido</div>
         <div class="card-body">
             <form method="POST" action="{{ route('pedido.produto.store', $pedido->id) }}">
                 @csrf
@@ -18,10 +18,10 @@
                         </select>
                     </div>
                     <div class="col-12 col-lg-2">
-                        <select class="form-control" name="produto_quantidade">
+                        <select class="form-control" name="quantidade">
                             <option value="" disabled selected>Selecione uma quantidade</option>
                             @for ($i = 1; $i < 11; $i++)
-                                <option value="quantidade">{{ $i }}</option>
+                                <option value={{ $i }}>{{ $i }}</option>
                             @endfor
                         </select>
                     </div>
@@ -37,18 +37,30 @@
                     <th class="text-end">Remover</th>
                 </thead>
                 <tbody>
-                    <td>Coca Cola</td>
-                    <td>2</td>
-                    <td class="text-end">
-                        <button type="submit" class="btn btn-sm btn-danger confirm-submit">
-                            <i style="color: #000" class="fa fa-trash"></i>
-                        </button>
-                    </td>
+                    @foreach ($pedido->produtos as $produto)
+                        <tr>
+                            <td>{{ $produto->nome_produto }}</td>
+                            <td>{{ $produto->pivot->quantidade }}</td>
+                            <td class="text-end">
+                                <form method="POST" action="{{ route('pedido.produto.destroy', [
+                                    'pedido' => $pedido->id,
+                                    'produto' => $produto->id
+                                ]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger confirm-submit" name="{{ $pedido->id }}">
+                                        <i style="color: #000" class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
             <div class="col d-flex justify-content-end gap-2">
                 <button type="submit" class="btn btn-md btn-outline-primary active">Enviar</button>
-                <form method="POST" action="{{ route('mesas.fechar', $mesa_id) }}">
+                <form method="POST" action="{{ route('mesas.fechar', $mesa) }}">
                     @method('put')
                     @csrf
                     <button type="submit" class="btn btn-md btn-secondary">Concluir</button>
