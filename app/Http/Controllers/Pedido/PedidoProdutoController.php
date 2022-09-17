@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Pedido;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Produto\PedidoProdutoRequest;
 use App\Models\{Pedido, Produto};
 use Illuminate\Http\Request;
 
 class PedidoProdutoController extends Controller
 {
-    public function store(Pedido $pedido, Request $request){
+    public function store(Pedido $pedido, PedidoProdutoRequest $request){
 
 
         $pedido_produto = $pedido->produtos->where('id', $request->produto_id)->first();
