@@ -59,7 +59,7 @@
                 </tbody>
             </table>
             <div class="col d-flex justify-content-end gap-2">
-                <a class="btn btn-md btn-outline-primary shadow active" role="button" href="{{ route('mesas.index') }}">Enviar</a>
+                <a class="btn btn-md btn-outline-primary shadow active" role="button" href = "{{ route('mesas.index')}}">Enviar</a>
                 <form method="POST" action="{{ route('mesas.fechar', $mesa) }}">
                     @method('put')
                     @csrf
