@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Produto\ProdutoController;
 use App\Http\Controllers\Garcom\Dashboard\DashboardController as GarcomDashboardController;
 use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardController;
+use App\Http\Controllers\Cozinha\CozinhaController;
 use App\Http\Controllers\Mesas\MesasController;
 use App\Http\Controllers\Pedido\PedidoController;
 use App\Http\Controllers\Pedido\PedidoProdutoController;
@@ -84,4 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('pedidos/{pedido}/produto', [PedidoProdutoController::class, 'store'])->name('pedido.produto.store');
     Route::delete('pedidos/{pedido}/produto/{produto}', [PedidoProdutoController::class, 'destroy'])->name('pedido.produto.destroy');
 
+
+    //Rotas para Cozinha
+    Route::get('cozinha', [CozinhaController::class, 'index'])->name('cozinha.index'); //->middleware('role:cozinha');
 });
