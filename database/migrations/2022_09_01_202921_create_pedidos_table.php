@@ -20,6 +20,7 @@ return new class extends Migration
 
             $table->foreign('mesa_id')->references('id')->on('mesas');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

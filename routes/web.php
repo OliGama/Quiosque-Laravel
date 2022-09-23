@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Produto\ProdutoController;
 use App\Http\Controllers\Garcom\Dashboard\DashboardController as GarcomDashboardController;
 use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardController;
+use App\Http\Controllers\Cozinha\CozinhaController;
 use App\Http\Controllers\Mesas\MesasController;
 use App\Http\Controllers\Pedido\PedidoController;
 use App\Http\Controllers\Pedido\PedidoProdutoController;
-
+use App\Http\Controllers\Pagamento\PagamentoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,7 +53,8 @@ Route::group(['as' => 'auth.'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-
+    //Rota de pagamento
+    Route::resource('pagamento', PagamentoController::class)->middleware('role:caixa');
 
     //Rotas para Caixa e Garçom
     Route::get('garcom/dashboard', [GarcomDashboardController::class, 'index'])->name('garcom.dashboard.index')->middleware('role:garcom');
@@ -77,7 +79,14 @@ Route::group(['middleware' => 'auth'], function () {
     //Rotas para Pedidos
     Route::post('pedidos/{id}', [PedidoController::class, 'create'])->name('pedidos.create');
     Route::get('pedido/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
-    Route::post('pedidos/{pedido}/produto', [PedidoProdutoController::class, 'store'])->name('pedido.produto.store');
     Route::get('pedido/{pedido}/edit', [PedidoController::class, 'edit'])->name('pedidos.edit');
+    Route::delete('pedido/{pedido}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
+
+    //Rotas para a Relação Pedidos Produtos
+    Route::post('pedidos/{pedido}/produto', [PedidoProdutoController::class, 'store'])->name('pedido.produto.store');
     Route::delete('pedidos/{pedido}/produto/{produto}', [PedidoProdutoController::class, 'destroy'])->name('pedido.produto.destroy');
+
+
+    //Rotas para Cozinha
+    Route::get('cozinha', [CozinhaController::class, 'index'])->name('cozinha.index'); //->middleware('role:cozinha');
 });
