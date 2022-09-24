@@ -2,7 +2,7 @@
 @section('title', 'Pedidos')
 @section('content')
     <div class="card mt-4">
-        <div class="card-header text-white" style="background-color: #4e73df">Pedido</div>
+        <div class="card-header text-white" style="background-color: #4e73df"><strong>Pedido para {{ $mesa->numero }}</strong></div>
         <div class="card-body">
             <form method="POST" action="{{ route('pedido.produto.store', $pedido->id) }}">
                 @csrf
@@ -47,6 +47,14 @@
                             <td>{{ $produto->nome_produto }}</td>
                             <td>{{ $produto->pivot->quantidade }}</td>
                             <td class="text-end">
+                                <form method="GET" action="{{ route('mais.produto', [$pedido, $produto])}}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-outline-success shadow">+</button>
+                                </form>
+                                <form method="GET" action="{{ route('menos.produto', [$pedido, $produto])}}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-outline-success shadow">-</button>
+                                </form>
                                 <form method="POST"
                                     action="{{ route('pedido.produto.destroy', [
                                         'pedido' => $pedido->id,

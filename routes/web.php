@@ -84,7 +84,8 @@ Route::group(['middleware' => 'auth'], function () {
     //Rotas para a Relação Pedidos Produtos
     Route::post('pedidos/{pedido}/produto', [PedidoProdutoController::class, 'store'])->name('pedido.produto.store');
     Route::delete('pedidos/{pedido}/produto/{produto}', [PedidoProdutoController::class, 'destroy'])->name('pedido.produto.destroy');
-
+    Route::get('pedido/{pedido}/produto/{produto}/mais', [PedidoProdutoController::class, 'update_mais'])->name('mais.produto');
+    Route::get('pedido/{pedido}/produto/{produto}/menos', [PedidoProdutoController::class, 'update_menos'])->name('menos.produto');
 
     //Rotas para Cozinha
     Route::get('cozinha', [CozinhaController::class, 'index'])->name('cozinha.index'); //->middleware('role:cozinha');
