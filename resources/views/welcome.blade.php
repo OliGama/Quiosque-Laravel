@@ -141,6 +141,23 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+
+                @if (session()->has('warning'))
+                    <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
+                        {{ session('warning') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="d-flex align-items-center justify-content-center">
                     @yield('session')
                 </div>
@@ -191,6 +208,11 @@
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-mask/jquery.mask.min.js') }}"></script>
 
+    <script>
+        setTimeout(function() {
+            $('#alert').remove();
+        }, 3000);
+    </script>
 </body>
 
 </html>

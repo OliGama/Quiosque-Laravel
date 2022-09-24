@@ -26,7 +26,7 @@ class LoginController extends Controller
 
         }
         return redirect()
-                ->route('auth.login.create')
+                ->route('auth.welcome')
                 ->with('warning', 'Autenticação falhou')
                 ->withInput();
     }

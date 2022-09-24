@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Mesa;
 use App\Models\Pedido;
 use App\Models\Produto;
+use Illuminate\Support\Facades\Auth;
 
 class PedidoController extends Controller
 {
@@ -20,7 +21,8 @@ class PedidoController extends Controller
         $mesa = Mesa::find($id);
 
         $pedido = Pedido::create([
-            'mesa_id' => $mesa->id
+            'mesa_id' => $mesa->id,
+            'usuario_id' => Auth::id()
         ]);
 
 

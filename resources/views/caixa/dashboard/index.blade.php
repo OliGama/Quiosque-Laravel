@@ -4,19 +4,6 @@
     <a href="{{ route('caixa.dashboard.index') }}" role="text" class="text-light"
         style="text-decoration: none; pointer-events: unset; cursor: pointer">Quiosque Laravel</a>
 @endsection --}}
-@section('session')
-    @if (session()->has('success'))
-        <div class="alert-success col-4 align-items-center justify-content-center" data-bs-dismiss="alert" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    @if (session()->has('warning'))
-        <div class="alert-warning col-4 align-items-center justify-content-center" data-bs-dismiss="alert" role="alert">
-            {{ session('warning') }}
-        </div>
-    @endif
-@endsection
 @section('title2')
     <div class="d-flex justify-content-center text-dark">
         <span>Lista de Garçons</span>
@@ -41,7 +28,9 @@
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        {{ $garcom->name }}
+                        {{ $garcom->name }} @if ($garcom->ativo == false)
+                            (desativado)
+                        @endif
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
@@ -49,6 +38,34 @@
                     <div class="accordion-body">
                         <ul>
                             <li>{{ $garcom->email }}</li>
+                            <br>
+                            <li>
+                                <form method="POST" action="{{ route('garcom.destroy', $garcom) }}">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-sm btn-secondary shadow" type="submit">Deletar</button>
+                                </form>
+                            </li>
+                            <br>
+                            <li>
+                                @if ($garcom->ativo == false)
+                                    <form method="POST" action="{{ route('garcom.ativar', $garcom) }}">
+                                        @method('put')
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary shadow">
+                                            Ativar
+                                        </button>
+                                    </form>
+                                @elseif ($garcom->ativo == true)
+                                    <form method="POST" action="{{ route('garcom.desativar', $garcom) }}">
+                                        @method('put')
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary shadow ">
+                                            Desativar
+                                        </button>
+                                    </form>
+                                @endif
+                            </li>
                         </ul>
                     </div>
                 </div>
