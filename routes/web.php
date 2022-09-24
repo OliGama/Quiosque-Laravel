@@ -26,7 +26,7 @@ use App\Http\Controllers\Pedido\PedidoProdutoController;
 */
 
 Route::group(['as' => 'auth.'], function () {
-//Rotas livres para todos visitantes
+    //Rotas livres para todos visitantes
     Route::group(['middleware' => 'guest'], function () {
 
 
@@ -40,7 +40,7 @@ Route::group(['as' => 'auth.'], function () {
         Route::get('login', [LoginController::class, 'create'])->name('login.create');
         Route::post('login', [LoginController::class, 'store'])->name('login.store');
     });
-//Rotas protegidas
+    //Rotas protegidas
 
 
     //Rotas para Register
@@ -57,6 +57,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Rotas para Caixa e Garçom
     Route::get('garcom/dashboard', [GarcomDashboardController::class, 'index'])->name('garcom.dashboard.index')->middleware('role:garcom');
+    Route::delete('garcom/{garcom}', [GarcomDashboardController::class, 'destroy'])->name('garcom.destroy')->middleware('role:caixa');
+    Route::put('garcom/desativar/{garcom}', [GarcomDashboardController::class, 'desativar'])->name('garcom.desativar');
+    Route::put('garcom/ativar/{garcom}', [GarcomDashboardController::class, 'ativar'])->name('garcom.ativar');
     Route::get('caixa/dashboard', [CaixaDashboardController::class, 'index'])->name('caixa.dashboard.index')->middleware('role:caixa');
 
 
@@ -85,7 +88,8 @@ Route::group(['middleware' => 'auth'], function () {
     //Rotas para a Relação Pedidos Produtos
     Route::post('pedidos/{pedido}/produto', [PedidoProdutoController::class, 'store'])->name('pedido.produto.store');
     Route::delete('pedidos/{pedido}/produto/{produto}', [PedidoProdutoController::class, 'destroy'])->name('pedido.produto.destroy');
-
+    Route::get('pedido/{pedido}/produto/{produto}/mais', [PedidoProdutoController::class, 'update_mais'])->name('mais.produto');
+    Route::get('pedido/{pedido}/produto/{produto}/menos', [PedidoProdutoController::class, 'update_menos'])->name('menos.produto');
 
     //Rotas para Cozinha
     Route::get('cozinha', [CozinhaController::class, 'index'])->name('cozinha.index'); //->middleware('role:cozinha');

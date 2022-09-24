@@ -182,7 +182,7 @@
     <script>
         setTimeout(function() {
             $('#alert').remove();
-        }, 5000);
+        }, 3000);
     </script>
 </body>
 

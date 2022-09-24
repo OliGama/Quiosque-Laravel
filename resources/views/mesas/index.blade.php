@@ -33,14 +33,13 @@
                                         data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ $mesa->id }}">
                                         Pedido
                                     </button>
-                                    {{-- <button type="button" class="btn btn-secondary shadow btn-md" style="margin-top: 3px"
-                                        data-bs-toggle="modal" data-bs-target="#staticBackdropDelete{{ $mesa->id }}">
-                                        Editar Pedido
-                                    </button> --}}
-                                    <button type="button" class="btn btn-sm btn-warning mr-2" data-bs-toggle="modal"
-                                        data-bs-target="#staticBackdropEdit{{ $mesa->id }}">
-                                        <i class="fa fa-lg fa-edit"></i>
-                                    </button>
+                                    <form method="POST" action="{{ route('mesas.fechar', $mesa->id) }}">
+                                        @method('put')
+                                        @csrf
+                                        <button type="submit" class="btn btn-md btn-secondary shadow ">
+                                            Fechar
+                                        </button>
+                                    </form>
                                 </div>
                                 <form method="POST" action="{{ route('pedidos.abrir', $mesa->id) }}">
                                     @csrf
@@ -72,32 +71,6 @@
                                         </div>
                                     </div>
                                 </form>
-                                <div class="modal fade" id="staticBackdropEdit{{ $mesa->id }}" data-bs-backdrop="static"
-                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title text-dark" id="staticBackdropLabel">
-                                                    Tem
-                                                    certeza?</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <span class="text-secondary">Editar pedido para a
-                                                    {{ $mesa->numero }}</span>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary btn-md shadow"
-                                                    data-bs-dismiss="modal">Fechar</button>
-                                                <a href="{{ route('pedidos.edit', $mesa->id) }}"
-                                                    class="btn btn-outline-primary btn-md active shadow"
-                                                    role="button">Editar</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             @endif
                         </div>
                     </div>
