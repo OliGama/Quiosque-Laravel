@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->boolean('finalizado')->default(0);
             $table->unsignedInteger('mesa_id');
+            $table->integer('usuario_id');
 
             $table->foreign('mesa_id')->references('id')->on('mesas');
             $table->timestamps();

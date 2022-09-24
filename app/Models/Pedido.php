@@ -12,7 +12,8 @@ class Pedido extends Model
 
     protected $fillable = [
         'finalizado',
-        'mesa_id'
+        'mesa_id',
+        'usuario_id'
     ];
 
     //relationships
