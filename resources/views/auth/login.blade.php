@@ -54,6 +54,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <a style="color: black" href="{{ route('auth.password.request') }}">Esqueceu senha ?</a>
                             <button type="submit" class="btn btn-primary btn-block mt-3 shadow">
                                 Login
                             </button>
