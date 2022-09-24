@@ -42,7 +42,7 @@
                                         <i class="fa fa-lg fa-edit"></i>
                                     </button>
                                 </div>
-                                <form method="POST" action="{{ route('pedidos.create', $mesa->id) }}">
+                                <form method="POST" action="{{ route('pedidos.abrir', $mesa->id) }}">
                                     @csrf
                                     <div class="modal fade" id="staticBackdrop{{ $mesa->id }}" data-bs-backdrop="static"
                                         data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"

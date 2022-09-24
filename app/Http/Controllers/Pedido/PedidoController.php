@@ -16,6 +16,17 @@ class PedidoController extends Controller
         return  view('pedidos.index');
     }
 
+    public function abrir($mesaid){
+
+        $pedido = Pedido::where('mesa_id', $mesaid)->where('finalizado', false)->first();
+
+        if($pedido){
+            return redirect()->route('pedidos.show', $pedido);
+        }
+
+        return redirect()->route('pedidos.create', $mesaid);
+    }
+
     public function create(Request $request, $id)
     {
         $mesa = Mesa::find($id);
