@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pedidos', function (Blueprint $table) {
-            $table->id();
-            $table->boolean('finalizado')->default(0);
-            $table->unsignedInteger('mesa_id');
-
-            $table->foreign('mesa_id')->references('id')->on('mesas');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -31,7 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('password_resets');
     }
 };
-

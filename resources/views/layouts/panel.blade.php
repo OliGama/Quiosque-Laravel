@@ -48,8 +48,14 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('produto.index') }}">
-                    <i class="fa fa-utensils"></i>
+                    <i class="fas fa-utensils"></i>
                     <span>Lista de Produtos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('cozinha.index') }}">
+                    {{-- <i class=""></i> --}}
+                    <span>Cozinha</span>
                 </a>
             </li>
 

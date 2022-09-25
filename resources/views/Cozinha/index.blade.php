@@ -1,5 +1,5 @@
 @extends('layouts.panel')
-@section('title', 'Editar mesa')
+@section('title', 'Cozinha')
 @section('content')
-
+    Cozinha
 @endsection
