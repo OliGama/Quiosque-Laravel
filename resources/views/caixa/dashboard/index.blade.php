@@ -37,34 +37,31 @@
                     data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <ul>
-                            <li>{{ $garcom->email }}</li>
-                            <br>
-                            <li>
-                                <form method="POST" action="{{ route('garcom.destroy', $garcom) }}">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-sm btn-secondary shadow" type="submit">Deletar</button>
-                                </form>
-                            </li>
-                            <br>
-                            <li>
-                                @if ($garcom->ativo == false)
-                                    <form method="POST" action="{{ route('garcom.ativar', $garcom) }}">
-                                        @method('put')
+                            <li class="container-fluid">{{ $garcom->email }}
+                                <div class="col d-flex justify-content-end gap-2">
+                                    <form method="POST" action="{{ route('garcom.destroy', $garcom) }}">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-outline-secondary shadow">
-                                            Ativar
-                                        </button>
+                                        @method('delete')
+                                        <button class="btn btn-sm btn-outline-danger shadow" type="submit">Deletar</button>
                                     </form>
-                                @elseif ($garcom->ativo == true)
-                                    <form method="POST" action="{{ route('garcom.desativar', $garcom) }}">
-                                        @method('put')
-                                        @csrf
-                                        <button type="submit" class="btn btn-sm btn-outline-secondary shadow ">
-                                            Desativar
-                                        </button>
-                                    </form>
-                                @endif
+                                    @if ($garcom->ativo == false)
+                                        <form method="POST" action="{{ route('garcom.ativar', $garcom) }}">
+                                            @method('put')
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-secondary shadow">
+                                                Ativar
+                                            </button>
+                                        </form>
+                                    @elseif ($garcom->ativo == true)
+                                        <form method="POST" action="{{ route('garcom.desativar', $garcom) }}">
+                                            @method('put')
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-secondary shadow ">
+                                                Desativar
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
                             </li>
                         </ul>
                     </div>

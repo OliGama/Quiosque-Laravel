@@ -41,13 +41,13 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('mesas.index')}}">
+                <a class="nav-link" href="{{ route('mesas.index') }}">
                     <i class="fas fa-fw fa-chair"></i>
                     <span>Mesas</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('produto.index')}}">
+                <a class="nav-link" href="{{ route('produto.index') }}">
                     <i class="fa fa-utensils"></i>
                     <span>Lista de Produtos</span>
                 </a>
@@ -120,7 +120,7 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                        <form method="POST" action="{{ route('auth.login.store')}}">
+                        <form method="POST" action="{{ route('auth.login.store') }}">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-6">
@@ -141,23 +141,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                @if (session()->has('success'))
-                    <div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
 
-                @if (session()->has('warning'))
-                    <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
-                        {{ session('warning') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
                 <div class="d-flex align-items-center justify-content-center">
                     @yield('session')
                 </div>
@@ -174,8 +158,26 @@
 
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
+
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+            @if (session()->has('warning'))
+                <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
+                    {{ session('warning') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+            
             <!-- End of Main Content -->
 
             <!-- Footer -->
