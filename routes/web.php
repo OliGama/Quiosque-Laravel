@@ -79,7 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //Rotas para Pedidos
-    Route::post('pedidos/{id}', [PedidoController::class, 'create'])->name('pedidos.create');
+    Route::get('pedidos/{id}', [PedidoController::class, 'create'])->name('pedidos.create');
     Route::get('pedido/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
     Route::post('pedido/{mesaid}', [PedidoController::class, 'abrir'])->name('pedidos.abrir');
     Route::get('pedido/{pedido}/edit', [PedidoController::class, 'edit'])->name('pedidos.edit');

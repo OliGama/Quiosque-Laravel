@@ -76,6 +76,11 @@
                     </div>
                 @endforeach
             </div>
+            <div class="d-flex justify-content-center">
+                <form method="GET" action="{{ route('mesas.create') }}">
+                    <button type="submit" class="btn btn-md btn-outline-primary shadow active">Adicionar Mesa</button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection

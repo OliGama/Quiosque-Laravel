@@ -29,7 +29,7 @@ class MesasController extends Controller
 
         return redirect()
             ->route('mesas.index')
-            ->with('success', 'Mesa cadatrada com sucesso!');
+            ->with('success', 'Mesa adicionada com sucesso!');
     }
 
     public function edit(Mesa $mesa)
