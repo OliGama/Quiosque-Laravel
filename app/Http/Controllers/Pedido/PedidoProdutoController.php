@@ -16,11 +16,13 @@ class PedidoProdutoController extends Controller
         $pedido_produto = $pedido->produtos->where('id', $request->produto_id)->first();
         if ($pedido_produto) {
             $pedido_produto->pivot->update([
-                'quantidade' => $pedido_produto->pivot->quantidade + $request->quantidade
+                'quantidade' => $pedido_produto->pivot->quantidade + $request->quantidade,
+                'observacao' => $pedido_produto->pivot->observacao + $request->observacao,
             ]);
         } else {
             $pedido->produtos()->attach([$request->produto_id => [
-                'quantidade' => $request->quantidade
+                'quantidade' => $request->quantidade,
+                'observacao' => $request->observacao
             ]]);
         }
         return back()->with('success', 'Pedido adicionado com sucesso!');
@@ -49,9 +51,13 @@ class PedidoProdutoController extends Controller
 
         $new_produto = $pedido->produtos()->where('id', $produto->id)->first();
         if ($new_produto) {
-            $new_produto->pivot->update([
-                'quantidade' => $new_produto->pivot->quantidade - 1
-            ]);
+            if ($new_produto->pivot->quantidade > 1) {
+                $new_produto->pivot->update([
+                    'quantidade' => $new_produto->pivot->quantidade - 1
+                ]);
+            } else {
+                $pedido->produtos()->detach($new_produto->id);
+            }
         }
         return back()->with('success', 'Removido com sucesso!');
     }

@@ -27,7 +27,7 @@ class PedidoController extends Controller
         return redirect()->route('pedidos.create', $mesaid);
     }
 
-    public function create(Request $request, $id)
+    public function create($id)
     {
         $mesa = Mesa::find($id);
 

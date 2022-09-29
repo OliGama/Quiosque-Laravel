@@ -70,7 +70,7 @@
                 <form method="POST" action="{{ route('pedidos.destroy', [$pedido, $mesa]) }}">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-md btn-secondary">Concluir</button>
+                    <button type="submit" class="btn btn-md btn-secondary">Finalizar</button>
                 </form>
             </div>
         </div>
