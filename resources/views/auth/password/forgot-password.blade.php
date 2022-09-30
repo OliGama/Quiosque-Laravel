@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    
+
 
     <h1 class="text-center text-dark my-4">Recuperar senha</h1>
 
@@ -20,7 +20,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card shadow my-4 mx-auto">
                     <div class="card-body">
-                        <form action="{{ route('auth.password.email') }}" method="POST" autocomplete="off">
+                        <form action="{{ route('password.email') }}" method="POST" autocomplete="off">
                             @csrf
                             <div class="row">
                                 <div class="col-12">

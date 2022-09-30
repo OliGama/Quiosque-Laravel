@@ -52,12 +52,6 @@
                     <span>Lista de Produtos</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('cozinha.index') }}">
-                    {{-- <i class=""></i> --}}
-                    <span>Cozinha</span>
-                </a>
-            </li>
 
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->
