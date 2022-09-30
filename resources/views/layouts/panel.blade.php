@@ -29,7 +29,7 @@
             <!-- Sidebar - Brand -->
             <div class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon">
-                    <i class="fas fa-umbrella-beach"></i>
+                <i><img src="{{ asset('img/logo_branco.png') }}" width="53" height="70"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">
                     <a href="{{ route('caixa.dashboard.index') }}" role="text" class="text-light"

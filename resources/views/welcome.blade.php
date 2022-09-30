@@ -11,9 +11,7 @@
     <title>Quiosque do Djalma - Inicio</title>
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
@@ -29,11 +27,10 @@
             <!-- Sidebar - Brand -->
             <div class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-umbrella-beach"></i>
+                    <i><img src="{{ asset('img/logo_branco.png') }}" width="53" height="70"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">
-                    <a href="/" role="text" class="text-light"
-                        style="text-decoration: none; pointer-events: unset; cursor: pointer">Quiosque do Djalma</a>
+                    <a href="/" role="text" class="text-light" style="text-decoration: none; pointer-events: unset; cursor: pointer">Quiosque do Djalma</a>
                 </div>
             </div>
 
@@ -82,8 +79,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <span class="navbar-text">
-                            <button class="btn btn-outline-light active" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Fazer Login</button>
+                            <button class="btn btn-outline-light active" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Fazer Login</button>
                         </span>
 
 
@@ -93,31 +89,28 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     {{ auth()->user()->name }}
-                                </span>
-                                <i class="fa fa-user"></i>
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <form method="POST" action="{{ route('auth.login.destroy') }}">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Sair
-                                    </button>
-                                </form>
-                            </div>
+                        </span>
+                        <i class="fa fa-user"></i>
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <form method="POST" action="{{ route('auth.login.destroy') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Sair
+                                </button>
+                            </form>
+                        </div>
                         </li> --}}
 
                     </ul>
                 </nav>
 
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
-                    aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasRightLabel">Login de Usuário</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
                         <form method="POST" action="{{ route('auth.login.store') }}">
@@ -161,23 +154,23 @@
             </div>
 
             @if (session()->has('success'))
-                <div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+            <div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             @endif
 
             @if (session()->has('warning'))
-                <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
-                    {{ session('warning') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+            <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
+                {{ session('warning') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             @endif
-            
+
             <!-- End of Main Content -->
 
             <!-- Footer -->
