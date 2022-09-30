@@ -1,13 +1,13 @@
-## Quiosque do Djalma
+# Quiosque do Djalma
 
-# Para Executar utlizar os comandos:
+## Para executar, utilizar os comandos:
     - Composer update
     - Checar arquivo .env e configurar o banco de dados
     - php artisan migrate:fresh --seed
     - php artisan optimize
     - php artisan serve
 
-# Contas de Usuários
+## Contas de Usuários
 
     - Caixa
         Email: djalma@caixa.com
@@ -15,6 +15,6 @@
     - Garçom
         Email: djalma@garcom.com
         Senha: 12345678
-    
+
 
     
