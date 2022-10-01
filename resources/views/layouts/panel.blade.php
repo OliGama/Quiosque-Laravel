@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Quiosque do Djalma - @yield('title')</title>
+    <title>Rancho do Djalma - @yield('title')</title>
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -29,11 +29,11 @@
             <!-- Sidebar - Brand -->
             <div class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon">
-                <i><img src="{{ asset('img/logo_branco.png') }}" width="53" height="70"></i>
+                <i><img src="{{ asset('img/logo_branco.png') }}" width="55" height="74"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">
                     <a href="{{ route('caixa.dashboard.index') }}" role="text" class="text-light"
-                        style="text-decoration: none; pointer-events: unset; cursor: pointer">Quiosque do Djalma</a>
+                        style="text-decoration: none; pointer-events: unset; cursor: pointer">Rancho do Djalma</a>
                 </div>
             </div>
 
@@ -153,7 +153,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>&copy; Quiosque do Djalma {{ date('Y') }}</span>
+                        <span>&copy; Rancho do Djalma {{ date('Y') }}</span>
                     </div>
                 </div>
             </footer>

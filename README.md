@@ -1,4 +1,4 @@
-# Quiosque do Djalma
+# Quiosque do Rancho do Djalma
 
 ## Para executar, utilizar os comandos:
     - Composer update
