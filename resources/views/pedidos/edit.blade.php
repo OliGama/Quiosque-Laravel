@@ -66,7 +66,8 @@
                 </tbody>
             </table>
             <div class="col d-flex justify-content-end gap-2">
-                <button type="submit" class="btn btn-md btn-outline-primary active">Enviar</button>
+                <a href="{{ route('mesas.index')}}">Voltar</a>
+                <button type="submit" class="btn btn-md btn-outline-primary active">Concluir</button>
                 <form method="POST" action="{{ route('pedidos.destroy', [$pedido, $mesa]) }}">
                     @csrf
                     @method('DELETE')

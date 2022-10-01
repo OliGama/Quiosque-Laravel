@@ -1,1 +1,1 @@
-$('.preco').mask('000.00')
+$('.preco').mask('#.##0.00', {reverse:true});
