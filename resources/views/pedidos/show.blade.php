@@ -7,12 +7,23 @@
         <form method="POST" action="{{ route('pedido.produto.store', $pedido->id) }}">
             @csrf
             <div class="row">
-                <div class="col-12 col-lg-5">
-                    <select class="form-control
+                <div class="col-12 col-lg-3">
+                    <select id="select_tipo" class="form-control">
+                        <option value="" disabled selected>Especifique um Tipo</option>
+                        @foreach ($tipos as $tipo)
+                        <option value="{{ $tipo }}">
+                            {{ $tipo }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-12 col-lg-3">
+
+                    <select id="selectProduto" class="form-control
                         @if ($errors->has('produto_id')) is-invalid @endif shadow-sm" name="produto_id">
                         <option value="" disabled selected>Selecione um produto</option>
                         @foreach ($allProdutos as $produto)
-                        <option value="{{ $produto->id }}" @if (old('produto_id')==$produto->id) selected @endif>
+                        <option class="options_produtos" data-tipo={{ $produto->tipo_produto }} value="{{ $produto->id }}" @if (old('produto_id')==$produto->id) selected @endif>
                             {{ $produto->nome_produto }} -- R$ {{ $produto->preco }}
                         </option>
                         @endforeach
@@ -81,4 +92,18 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+<script>
+    $( document ).ready(function() {
+        $('#select_tipo').change(function(){
+            selection = $(this).val();
+            if (selection != null) {
+                $('.options_produtos').hide();
+                $(".options_produtos[data-tipo='"+selection+"']").show();
+            }
+
+        });
+    });
+</script>
 @endsection

@@ -45,10 +45,12 @@ class PedidoController extends Controller
     {
         $mesa = Mesa::find($pedido->mesa_id);
         $allProdutos = Produto::all();
+        $tipos = $allProdutos->pluck('tipo_produto')->unique();
         return view('pedidos.show', [
             'pedido' => $pedido,
             'allProdutos' => $allProdutos,
-            'mesa' => $mesa
+            'mesa' => $mesa,
+            'tipos' => $tipos
         ]);
     }
 
