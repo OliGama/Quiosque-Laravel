@@ -54,35 +54,35 @@ class PedidoController extends Controller
         ]);
     }
 
-    public function edit($mesa_id)
-    {
+    // public function edit($mesa_id)
+    // {
 
-        $mesa = Mesa::find($mesa_id);
+    //     $mesa = Mesa::find($mesa_id);
 
-        if (!$mesa) {
-            return back()->with('warning', $mesa->numero.' não esta cadastrada');
-        }
-        if ($mesa->ocupada == 0) {
-            return back()->with('warning', $mesa->numero.' esta fechada');
-        }
+    //     if (!$mesa) {
+    //         return back()->with('warning', $mesa->numero.' não esta cadastrada');
+    //     }
+    //     if ($mesa->ocupada == 0) {
+    //         return back()->with('warning', $mesa->numero.' esta fechada');
+    //     }
 
-        $pedido = Pedido::where('mesa_id', $mesa_id)->where('finalizado', 0)->first();
+    //     $pedido = Pedido::where('mesa_id', $mesa_id)->where('finalizado', 0)->first();
 
-        if (!$pedido) {
-            return back()->with('warning', $mesa->numero.' ainda não tem pedidos');
-        }
-        if ($pedido->finalizado == 1) {
-            return back()->with('warning', 'Mesa não tem pedido');
-        }
+    //     if (!$pedido) {
+    //         return back()->with('warning', $mesa->numero.' ainda não tem pedidos');
+    //     }
+    //     if ($pedido->finalizado == 1) {
+    //         return back()->with('warning', 'Mesa não tem pedido');
+    //     }
 
-        $produto = Produto::all();
+    //     $produto = Produto::all();
 
-        return view('pedidos.edit', [
-            'pedido' => $pedido,
-            'allProdutos' => Produto::all(),
-            'mesa' => $mesa
-        ]);
-    }
+    //     return view('pedidos.edit', [
+    //         'pedido' => $pedido,
+    //         'allProdutos' => Produto::all(),
+    //         'mesa' => $mesa
+    //     ]);
+    // }
 
     public function destroy(Pedido $pedido){
 
