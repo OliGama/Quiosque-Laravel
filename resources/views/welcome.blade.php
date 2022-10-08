@@ -118,8 +118,12 @@
                                     <label for="password" class="form-label">Senha</label>
                                     <input type="password" name="password" class="form-control" id="password">
                                 </div>
+
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary">Login</button>
+                                </div>
+                                <div class="col-12">
+                                    <a style="color: black" href="{{ route('password.request') }}">Esqueceu sua senha ?</a>
                                 </div>
                         </form>
                     </div>
