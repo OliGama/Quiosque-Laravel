@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use App\Notifications\ResetPasswordNotification;
 use Laravel\Sanctum\HasApiTokens;
 
 
@@ -30,6 +31,19 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($value){
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    /**
+    * Send a password reset notification to the user.
+    *
+    * @param  string  $token
+    *   @return void
+    */
+    public function sendPasswordResetNotification($token)
+    {
+        $url = 'http://localhost:8000/reset-password?token='.$token;
+    
+        $this->notify(new ResetPasswordNotification($url));
     }
 
     /**

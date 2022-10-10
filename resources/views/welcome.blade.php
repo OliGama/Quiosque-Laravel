@@ -52,12 +52,7 @@
                     <span>Lista de Produtos</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('cozinha.index') }}">
-                    <i class="fa-regular fa-pan-food"></i>
-                    <span>Cozinha</span>
-                </a>
-            </li>
+            
 
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->
@@ -134,6 +129,11 @@
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary">Login</button>
                                 </div>
+                                <div class="col-12">
+                                    <a style="color: black" href="{{ route('password.request') }}">Esqueceu sua senha ?</a>
+                                </div>
+
+                                
                         </form>
                     </div>
                 </div>
