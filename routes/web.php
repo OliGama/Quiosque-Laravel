@@ -33,6 +33,8 @@ use App\Http\Controllers\Pagamento\PagamentoController;
         return view('auth.forgot-password');
     })->middleware('guest')->name('password.request');
 
+    Route::get('cardapio/{id}', [ProdutoController::class, 'cardapio'])->name('produto.cardapio');
+
     Route::post('/forgot-password', function (Request $request) {
         $request->validate(['email' => 'required|email']);
 
