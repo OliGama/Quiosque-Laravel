@@ -50,6 +50,7 @@
         </form>
         <table class="table bg-white mt-3">
             <thead>
+                <th>Tipo do Produto</th>
                 <th>Nome do Produto</th>
                 <th>Quantidade do Produto</th>
                 <th>Observações</th>
@@ -58,6 +59,7 @@
             <tbody>
                 @foreach ($pedido->produtos as $produto)
                 <tr>
+                    <td>{{ $produto->tipo_produto }}</td>
                     <td>{{ $produto->nome_produto }}</td>
                     <td>{{ $produto->pivot->quantidade }}</td>
                     <td>{{ $produto->pivot->observacao }}</td>

@@ -22,7 +22,7 @@ class ProdutoSeeder extends Seeder
             'preco' => '6.00'
         ]);
         Produto::create([
-            'nome_produto' => 'Coca Cola 0',
+            'nome_produto' => 'Coca Cola Zero',
             'tipo_produto' => 'Bebida',
             'preco' => '6.00'
         ]);
@@ -32,7 +32,7 @@ class ProdutoSeeder extends Seeder
             'preco' => '6.00'
         ]);
         Produto::create([
-            'nome_produto' => 'Fanta Guarana 0',
+            'nome_produto' => 'Fanta Guarana Zero',
             'tipo_produto' => 'Bebida',
             'preco' => '6.00'
         ]);
@@ -57,7 +57,7 @@ class ProdutoSeeder extends Seeder
             'preco' => '6.00'
         ]);
         Produto::create([
-            'nome_produto' => 'Tônica 0',
+            'nome_produto' => 'Tônica Zero',
             'tipo_produto' => 'Bebida',
             'preco' => '6.00'
         ]);
@@ -72,7 +72,7 @@ class ProdutoSeeder extends Seeder
             'preco' => '6.00'
         ]);
         Produto::create([
-            'nome_produto' => 'Água com gas',
+            'nome_produto' => 'Água com gás',
             'tipo_produto' => 'Bebida',
             'preco' => '5.00'
         ]);
@@ -164,22 +164,22 @@ class ProdutoSeeder extends Seeder
             'preco' => '6.00'
         ]);
         Produto::create([
-            'nome_produto' => 'Cerveja 0 Estrella Galícia Tradicional Lata 350ml',
+            'nome_produto' => 'Cerveja Zero Estrella Galícia Tradicional Lata 350ml',
             'tipo_produto' => 'Bebida',
             'preco' => '6.00'
         ]);
         Produto::create([
-            'nome_produto' => 'Cerveja 0 Estrella Galícia Tradicional LN 250ml',
+            'nome_produto' => 'Cerveja Zero Estrella Galícia Tradicional LN 250ml',
             'tipo_produto' => 'Bebida',
             'preco' => '6.00'
         ]);
         Produto::create([
-            'nome_produto' => 'Cerveja 0 Estrella Galícia LN Tostada 250ml',
+            'nome_produto' => 'Cerveja Zero Estrella Galícia LN Tostada 250ml',
             'tipo_produto' => 'Bebida',
             'preco' => '6.00'
         ]);
         Produto::create([
-            'nome_produto' => 'Cerveja 0 Estrella Galícia LN Black 250ml',
+            'nome_produto' => 'Cerveja Zero Estrella Galícia LN Black 250ml',
             'tipo_produto' => 'Bebida',
             'preco' => '5.00'
         ]);
@@ -395,7 +395,7 @@ class ProdutoSeeder extends Seeder
         ]);
 
 
-        //Porções Diversas 
+        //Porções Diversas
         Produto::create([
             'nome_produto' => 'Batata Frita',
             'tipo_produto' => 'Porção',
