@@ -16,7 +16,8 @@ use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardCo
 use App\Http\Controllers\Mesas\MesasController;
 use App\Http\Controllers\Pedido\PedidoController;
 use App\Http\Controllers\Pedido\PedidoProdutoController;
-use App\Http\Controllers\Pagamento\PagamentoController;
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,29 +49,64 @@ Route::get('/reset-password/{token}', function ($token) {
     return view('auth.reset-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
 
+// Route::post('/reset-password', function (Request $request) {
+//     $request->validate([
+//         'token' => 'required',
+//         'email' => 'required|email',
+//         'password' => 'required|min:8|confirmed',
+//     ]);
+//     $token = DB::table('password_resets')->where('email', $request->email)->orderBy('created_at', 'desc')->limit(1)->first();
+//     $user = User::where('email', $request->email)->first();
+//     if (!$user) {
+//         return back()->with('Usuario não cadastrado');
+//     }
+//     if ($token) {
+
+//         if ($token->token != $request->token) {
+//             return back()->with('Token Invalido');
+//         }
+
+//         $user->forceFill([
+//             'password' => Hash::make($request->password)
+//         ])->setRememberToken(Str::random(60));
+
+//         DB::table('password_resets')->where('email', $request->email)->delete();
+
+//         Auth::attempt([
+//             'email'    => $request->email,
+//             'password' => $request->password,
+//         ]);
+
+//         return redirect()->route('welcome');
+//     } else {
+//         return back()->with('Token Invalido');
+//     }
+// })->middleware('guest')->name('password.update');
+
+
+
 Route::post('/reset-password', function (Request $request) {
-    $request->validate([
-        'token' => 'required',
-        'email' => 'required|email',
-        'password' => 'required|min:8|confirmed',
-    ]);
+    // $request->validate([
+    //     'token' => 'required',
+    //     'email' => 'required|email',
+    //     'password' => 'required|min:8|confirmed',
+    // ]);
 
     $status = Password::reset(
         $request->only('email', 'password', 'password_confirmation', 'token'),
         function ($user, $password) {
             $user->forceFill([
                 'password' => Hash::make($password)
-            ])->setRememberToken(Str::random(60));
+                ])->setRememberToken(Str::random(60));
 
-            $user->save();
+                $user->save();
 
-            event(new PasswordReset($user));
-        }
-    );
-
+                event(new PasswordReset($user));
+            }
+        );
     return $status === Password::PASSWORD_RESET
-                ? redirect()->route('login')->with('status', __($status))
-                : back()->withErrors(['email' => [__($status)]]);
+        ? redirect()->route('login')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
 
 Route::group(['as' => 'auth.'], function () {

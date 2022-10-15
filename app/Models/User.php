@@ -25,26 +25,27 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'ativo'
+        'ativo',
+        'remember_token'
     ];
-
-    /**
-     * Send a password reset notification to the user.
-     *
-     * @param  string  $token
-     * @return void
-     */
-    public function sendPasswordResetNotification($token)
-    {
-        $url = 'https://example.com/reset-password?token='.$token;
-
-        $this->notify(new ResetPasswordNotification($url));
-    }
 
     //mutators
 
     public function setPasswordAttribute($value){
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    /**
+    * Send a password reset notification to the user.
+    *
+    * @param  string  $token
+    *   @return void
+    */
+    public function sendPasswordResetNotification($token)
+    {
+        $url = 'http://localhost:8000/reset-password/'.$token;
+
+        $this->notify(new ResetPasswordNotification($url));
     }
 
     /**

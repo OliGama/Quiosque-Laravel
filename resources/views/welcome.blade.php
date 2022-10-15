@@ -50,6 +50,7 @@
                 </a>
             </li>
 
+
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->
 
@@ -125,6 +126,8 @@
                                 <div class="col-12">
                                     <a style="color: black" href="{{ route('password.request') }}">Esqueceu sua senha ?</a>
                                 </div>
+
+
                         </form>
                     </div>
                 </div>

@@ -52,6 +52,7 @@
                     <span>Lista de Produtos</span>
                 </a>
             </li>
+            
 
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->
