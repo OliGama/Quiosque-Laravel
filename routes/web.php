@@ -13,11 +13,11 @@ use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\Produto\ProdutoController;
 use App\Http\Controllers\Garcom\Dashboard\DashboardController as GarcomDashboardController;
 use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardController;
-use App\Http\Controllers\Cozinha\CozinhaController;
 use App\Http\Controllers\Mesas\MesasController;
 use App\Http\Controllers\Pedido\PedidoController;
 use App\Http\Controllers\Pedido\PedidoProdutoController;
-use App\Http\Controllers\Pagamento\PagamentoController;
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,38 +29,74 @@ use App\Http\Controllers\Pagamento\PagamentoController;
 |
 */
 
-    Route::get('/forgot-password', function () {
-        return view('auth.forgot-password');
-    })->middleware('guest')->name('password.request');
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
 
-    Route::post('/forgot-password', function (Request $request) {
-        $request->validate(['email' => 'required|email']);
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
 
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
 
-        return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
-    })->middleware('guest')->name('password.email');
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
 
-    Route::get('/reset-password/{token}', function ($token) {
-        return view('auth.reset-password', ['token' => $token]);
-    })->middleware('guest')->name('password.reset');
+Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
 
-    Route::post('/reset-password', function (Request $request) {
-        $request->validate([
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:8|confirmed',
-        ]);
+// Route::post('/reset-password', function (Request $request) {
+//     $request->validate([
+//         'token' => 'required',
+//         'email' => 'required|email',
+//         'password' => 'required|min:8|confirmed',
+//     ]);
+//     $token = DB::table('password_resets')->where('email', $request->email)->orderBy('created_at', 'desc')->limit(1)->first();
+//     $user = User::where('email', $request->email)->first();
+//     if (!$user) {
+//         return back()->with('Usuario não cadastrado');
+//     }
+//     if ($token) {
 
-        $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user, $password) {
-                $user->forceFill([
-                    'password' => Hash::make($password)
+//         if ($token->token != $request->token) {
+//             return back()->with('Token Invalido');
+//         }
+
+//         $user->forceFill([
+//             'password' => Hash::make($request->password)
+//         ])->setRememberToken(Str::random(60));
+
+//         DB::table('password_resets')->where('email', $request->email)->delete();
+
+//         Auth::attempt([
+//             'email'    => $request->email,
+//             'password' => $request->password,
+//         ]);
+
+//         return redirect()->route('welcome');
+//     } else {
+//         return back()->with('Token Invalido');
+//     }
+// })->middleware('guest')->name('password.update');
+
+
+
+Route::post('/reset-password', function (Request $request) {
+    // $request->validate([
+    //     'token' => 'required',
+    //     'email' => 'required|email',
+    //     'password' => 'required|min:8|confirmed',
+    // ]);
+
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function ($user, $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
                 ])->setRememberToken(Str::random(60));
 
                 $user->save();
@@ -68,11 +104,10 @@ use App\Http\Controllers\Pagamento\PagamentoController;
                 event(new PasswordReset($user));
             }
         );
-
-        return $status === Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
-                    : back()->withErrors(['email' => [__($status)]]);
-    })->middleware('guest')->name('password.update');
+    return $status === Password::PASSWORD_RESET
+        ? redirect()->route('login')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');
 
 Route::group(['as' => 'auth.'], function () {
     //Rotas livres para todos visitantes
@@ -140,5 +175,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('pedidos/{pedido}/produto/{produto}', [PedidoProdutoController::class, 'destroy'])->name('pedido.produto.destroy');
     Route::get('pedido/{pedido}/produto/{produto}/mais', [PedidoProdutoController::class, 'update_mais'])->name('mais.produto');
     Route::get('pedido/{pedido}/produto/{produto}/menos', [PedidoProdutoController::class, 'update_menos'])->name('menos.produto');
-
 });
