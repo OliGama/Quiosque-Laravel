@@ -29,6 +29,11 @@
                     </div>
                 @endif
 
+                @if (session('status'))
+                    <div class="alert alert-ssuccess">
+                        {{ session('status') }}
+                    </div>
+                @endif
 
                 <div class="card shadow my-4 mx-auto">
                     <div class="card-body">

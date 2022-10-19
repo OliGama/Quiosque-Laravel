@@ -86,26 +86,37 @@ Route::get('/reset-password/{token}', function ($token) {
 
 
 Route::post('/reset-password', function (Request $request) {
-    // $request->validate([
-    //     'token' => 'required',
-    //     'email' => 'required|email',
-    //     'password' => 'required|min:8|confirmed',
-    // ]);
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+    ]);
 
     $status = Password::reset(
         $request->only('email', 'password', 'password_confirmation', 'token'),
         function ($user, $password) {
             $user->forceFill([
-                'password' => Hash::make($password)
-                ])->setRememberToken(Str::random(60));
+            'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+        
+            $user->save();
 
-                $user->save();
-
-                event(new PasswordReset($user));
-            }
+            event(new PasswordReset($user));
+        }
         );
+        // $request->only('email', 'password', 'password_confirmation', 'token'),
+        //     function ($user) use ($request) {
+        //         $user->forceFill([
+        //             'password' => Hash::make($request->password),
+        //             'remember_token' => Str::random(60),
+        //             dd('a')
+        //         ])->save();
+
+        //         event(new PasswordReset($user));
+        //     }
+        // );
     return $status === Password::PASSWORD_RESET
-        ? redirect()->route('login')->with('status', __($status))
+        ? redirect()->route('auth.login.create')->with('status', __($status))
         : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
 

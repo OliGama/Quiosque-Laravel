@@ -32,10 +32,10 @@ class LoginController extends Controller
                     ->with('warning', 'Autenticação falhou, usuário desativado!');
             }
         }
+        
 
         if (Auth::attempt($credentials)) {
             $userRole = auth()->user()->role;
-
             return redirect(UserService::getDashboardRouteBasedOnUserRole($userRole));
         }
         return redirect()
