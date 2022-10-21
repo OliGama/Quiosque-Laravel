@@ -15,6 +15,8 @@ use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardCo
 use App\Http\Controllers\Mesas\MesasController;
 use App\Http\Controllers\Pedido\PedidoController;
 use App\Http\Controllers\Pedido\PedidoProdutoController;
+use App\Http\Controllers\Pagamento\PagamentoController;
+use App\Http\Controllers\Relatorio\RelatorioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,8 @@ use App\Http\Controllers\Pedido\PedidoProdutoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('qr-code', [ProdutoController::class, 'menuQR'])->name('menuQR');
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');

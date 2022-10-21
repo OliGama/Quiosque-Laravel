@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Produto\ProdutoRequest;
 use Illuminate\Http\Request;
 use App\Models\Produto;
+Use App\Models\Mesa;
+use LaravelQRCode\Facades\QRCode;
 
 class ProdutoController extends Controller
 {
@@ -55,5 +57,21 @@ class ProdutoController extends Controller
     {
         $produto->delete();
         return redirect()->route('produto.index')->with('success', 'Produto deletado!');
+    }
+
+    public function menuQR(Mesa $id){
+
+        $produtos = Produto::query();
+
+        return QRCode::url('werneckbh.github.io/qr-code/')
+                  ->setSize(8)
+                  ->setMargin(2)
+                  ->png();
+
+
+        // view('produto.cardapio', [
+        //     'produtos' => $produtos->paginate(10),
+        //     $id
+        // ]);
     }
 }
