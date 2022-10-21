@@ -11,7 +11,9 @@
     <title> Rancho do Djalma - Inicio</title>
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
@@ -30,7 +32,8 @@
                     <i><img src="{{ asset('img/logo_branco.png') }}" width="55" height="74"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">
-                <a href="/" role="text" class="text-light" style="text-decoration: none; pointer-events: unset; cursor: pointer">Rancho do Djalma</a>
+                    <a href="/" role="text" class="text-light"
+                        style="text-decoration: none; pointer-events: unset; cursor: pointer">Rancho do Djalma</a>
                 </div>
             </div>
 
@@ -74,7 +77,8 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <span class="navbar-text">
-                            <button class="btn btn-outline-light active" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Fazer Login</button>
+                            <button class="btn btn-outline-light active" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Fazer Login</button>
                         </span>
 
 
@@ -102,10 +106,12 @@
                     </ul>
                 </nav>
 
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                    aria-labelledby="offcanvasRightLabel">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasRightLabel">Login de Usuário</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
                         <form method="POST" action="{{ route('auth.login.store') }}">
@@ -113,18 +119,18 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email">
+                                    <input type="email" name="email" class="form-control shadow" id="email">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="password" class="form-label">Senha</label>
-                                    <input type="password" name="password" class="form-control" id="password">
+                                    <input type="password" name="password" class="form-control shadow-sm"
+                                        id="password">
                                 </div>
 
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">Login</button>
-                                </div>
-                                <div class="col-12">
-                                    <a style="color: black" href="{{ route('password.request') }}">Esqueceu sua senha ?</a>
+                                    <button type="submit" class="btn btn-primary shadow-sm">Login</button>
+                                    <a class="btn btn-outline-secondary shadow" role="button"
+                                        href="{{ route('password.request') }}">Esqueceu sua senha ?</a>
                                 </div>
 
 
@@ -155,21 +161,27 @@
             </div>
 
             @if (session()->has('success'))
-            <div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
-                {{ session('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+                <div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             @endif
 
             @if (session()->has('warning'))
-            <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
-                {{ session('warning') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+                <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
+                    {{ session('warning') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
             @endif
 
             <!-- End of Main Content -->
@@ -178,7 +190,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>&copy; Quiosque  Rancho do Djalma {{ date('Y') }}</span>
+                        <span>&copy; Quiosque Rancho do Djalma {{ date('Y') }}</span>
                     </div>
                 </div>
             </footer>
