@@ -8,12 +8,14 @@
     </div>
 @endsection
 @section('content')
-    <form class ="col-9">
-        <div class="flex mb-4" >
+    <form class="col-9">
+        <div class="flex mb-4">
             <div class="d-flex align-items-center">
                 <span style="font-weight: bold">Buscar produto</span>
-                <input type="text" name="search" class="form-control w-50 mr-2 shadow" style="margin-left: 5px" value="{{ $search }}" placeholder="Pesquisar...">
-                <button type="submit" class="btn btn-md btn-outline-primary active shadow"><i class="fa fa-search"></i></button>
+                <input type="text" name="search" class="form-control w-50 mr-2 shadow" style="margin-left: 5px"
+                    value="{{ $search }}" placeholder="Pesquisar...">
+                <button type="submit" class="btn btn-md btn-outline-primary active shadow"><i
+                        class="fa fa-search"></i></button>
             </div>
         </div>
     </form>
@@ -106,7 +108,7 @@
                     <th scope="row">{{ $produto->id }}</th>
                     <td>{{ $produto->nome_produto }}</td>
                     <td>{{ $produto->tipo_produto }}</td>
-                    <td>R$ {{ number_format($produto->preco, 2, ",") }}</td>
+                    <td>R$ {{ number_format($produto->preco, 2, ',') }}</td>
                     @if (auth()->user()->role === 'caixa')
                         <td>
                             <div class="d-flex align-items-center">
@@ -167,6 +169,7 @@
                                                                     <option value="Pastel">Pastel</option>
                                                                     <option value="Porção">Porção</option>
                                                                 </select>
+
                                                                 <div class="invalid-feedback">
                                                                     {{ $errors->first('tipo_produto') }}
                                                                 </div>
@@ -176,9 +179,10 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Fechar</button>
-                                                    <button type="submit"
-                                                        class="btn btn-outline-primary active">Salvar</button>
+                                                        data-bs-dismiss="modal">Fechar
+                                                    </button>
+                                                    <button type="submit" class="btn btn-outline-primary active">Salvar
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -191,6 +195,18 @@
                                         <i style="color: #000" class="fa fa-trash"></i>
                                     </button>
                                 </form>
+                                <form action="{{ route('produto.esgotado', $produto)}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    @if ($produto->esgotado == false)
+                                        <button style="margin-left:8px;" type="submit"class="btn btn-sm btn-success"
+                                            data-bs-dismiss="modal"> Disponível</button>
+                                    @elseif($produto->esgotado == true)
+                                        <button style="margin-left:8px;" type="submit"class="btn btn-sm btn-danger"
+                                            data-bs-dismiss="modal"> Esgotado</button>
+                                    @endif
+                                </form>
+
                             </div>
                         </td>
                     @endif
@@ -203,7 +219,7 @@
         </tbody>
     </table>
 
-    {{$produtos->withQueryString()->links()}}
+    {{ $produtos->withQueryString()->links() }}
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-mask/jquery.mask.min.js') }}"></script>
     <script src="{{ asset('js/Produto/mask.js') }}"></script>

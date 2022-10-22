@@ -21,7 +21,12 @@
                 <tr class="text-dark">
                     <td>{{ $produto->nome_produto }}</td>
                     <td>{{ $produto->tipo_produto }}</td>
-                    <td>R$ {{ number_format($produto->preco, 2, ",") }}</td>
+                    @if ($produto->esgotado == false)
+                        <td>R$ {{ number_format($produto->preco, 2, ",") }}</td>
+                    @else
+                        <td>Produto está Esgotado</td>
+                    @endif
+
             @empty
                 <tr>
                     <td colspan="5" class="text-center text-dark">Não há dados no momento</td>
