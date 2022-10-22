@@ -66,4 +66,14 @@ class ProdutoController extends Controller
             $id
         ]);
     }
+
+    public function esgotado(Produto $produto){
+        if($produto->esgotado == false){
+            $produto->update(['esgotado', true]);
+        }elseif($produto->esgotado == true){
+            $produto->update(['esgotado', false]);
+        }
+
+        return view('produto.index');
+    }
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nome_produto');
             $table->string('tipo_produto');
             $table->decimal('preco', 8, 2);
+            $table->boolean('esgotado')->default(0);
             $table->timestamps();
         });
     }
