@@ -81,6 +81,13 @@
                     <button type="submit" class="btn btn-md btn-outline-primary shadow active">Adicionar Mesa</button>
                 </form>
             </div>
+            <div class="d-flex justify-content-end">
+                <form method="POST" action="{{ route('mesas.juntar', $mesa->id) }}">
+                    @method('PUT')
+                    @csrf
+                    <button type="submit" class="btn btn-md btn-outline-primary shadow active">Juntar Mesas</button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
