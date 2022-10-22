@@ -74,7 +74,6 @@ class ProdutoController extends Controller
         }elseif($produto->esgotado == true){
             $produto->update(['esgotado' => false]);
         }
-
         return view('produto.index');
     }
 }
