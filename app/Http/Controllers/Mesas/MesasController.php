@@ -59,4 +59,12 @@ class MesasController extends Controller
 
         return redirect()->route('mesas.index')->with('success', $mesa->numero.' fechada com sucesso');
     }
+
+    public function juntar(Mesa $mesa)
+    {
+        $mesa = Mesa::find($mesa->pedidos());
+        dd($mesa);
+
+        return view('mesas.juntar');
+    }
 }
