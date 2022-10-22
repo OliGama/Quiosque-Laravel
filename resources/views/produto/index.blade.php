@@ -195,9 +195,8 @@
                                         <i style="color: #000" class="fa fa-trash"></i>
                                     </button>
                                 </form>
-                                <form action="{{ route('produto.esgotado', $produto)}}" method="POST">
+                                <form action="{{ route('produto.esgotado', $produto)}}" method="GET">
                                     @csrf
-                                    @method('PUT')
                                     @if ($produto->esgotado == false)
                                         <button style="margin-left:8px;" type="submit"class="btn btn-sm btn-success"
                                             data-bs-dismiss="modal"> Disponível</button>

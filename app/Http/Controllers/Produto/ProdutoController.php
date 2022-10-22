@@ -71,6 +71,7 @@ class ProdutoController extends Controller
 
         if($produto->esgotado == false){
             $produto->update(['esgotado' => true]);
+            dd($produto);
         }elseif($produto->esgotado == true){
             $produto->update(['esgotado' => false]);
         }

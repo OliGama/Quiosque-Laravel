@@ -119,7 +119,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Rotas para Produtos
     Route::get('produto', [ProdutoController::class, 'index'])->name('produto.index');
-    Route::put('produto/{produto}', [ProdutoController::class, 'esgotado'])->name('produto.esgotado');
+    Route::get('produto/{produto}', [ProdutoController::class, 'esgotado'])->name('produto.esgotado');
     Route::resource('produto', ProdutoController::class)->except('index')->middleware('role:caixa');
 
 
