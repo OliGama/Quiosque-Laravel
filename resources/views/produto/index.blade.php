@@ -188,15 +188,16 @@
                                         </div>
                                     </div>
                                 </form>
-                                <form action="{{ route('produto.destroy', $produto->id) }}" method="POST">
+                                <form action="{{ route('produto.destroy', $produto->id) }}" method="PUT">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger shadow-sm confirm-submit">
                                         <i style="color: #000" class="fa fa-trash"></i>
                                     </button>
                                 </form>
-                                <form action="{{ route('produto.esgotado', $produto)}}" method="GET">
+                                <form action="{{ route('produto.esgotado', $produto->id)}}" method="POST">
                                     @csrf
+                                    @method('put')
                                     @if ($produto->esgotado == false)
                                         <button style="margin-left:8px;" type="submit"class="btn btn-sm btn-success"
                                             data-bs-dismiss="modal"> Disponível</button>

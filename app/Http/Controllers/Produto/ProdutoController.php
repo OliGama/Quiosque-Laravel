@@ -67,14 +67,14 @@ class ProdutoController extends Controller
         ]);
     }
 
-    public function esgotado(Produto $produto){
-
+    public function esgotado($id){
+        $produto = Produto::find($id);
         if($produto->esgotado == false){
             $produto->update(['esgotado' => true]);
-            dd($produto);
+            return redirect()->route('produto.index');
         }elseif($produto->esgotado == true){
             $produto->update(['esgotado' => false]);
+            return redirect()->route('produto.index');
         }
-        return view('produto.index');
     }
 }

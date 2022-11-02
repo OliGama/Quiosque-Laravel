@@ -35,7 +35,7 @@ Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
 
-Route::get('cardapio/{id}', [ProdutoController::class, 'cardapio'])->name('produto.cardapio');
+Route::get('cardapio/{id}', [ProdutoController::class, 'cardapio'])->middleware('guest')->name('produto.cardapio');
 
 Route::post('/forgot-password', function (Request $request) {
     $request->validate(['email' => 'required|email']);
@@ -119,8 +119,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Rotas para Produtos
     Route::get('produto', [ProdutoController::class, 'index'])->name('produto.index');
-    Route::get('produto/{produto}', [ProdutoController::class, 'esgotado'])->name('produto.esgotado');
-    Route::resource('produto', ProdutoController::class)->except('index')->middleware('role:caixa');
+    Route::put('produto/{produto}', [ProdutoController::class, 'esgotado'])->name('produto.esgotado');
+    Route::resource('produto', ProdutoController::class)->except('index', 'esgotado')->middleware('role:caixa');
 
 
     //Rotas para Mesas
