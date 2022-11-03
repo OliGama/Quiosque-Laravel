@@ -17,6 +17,7 @@ use App\Http\Controllers\Pedido\PedidoController;
 use App\Http\Controllers\Pedido\PedidoProdutoController;
 use App\Http\Controllers\Pagamento\PagamentoController;
 use App\Http\Controllers\Relatorio\RelatorioController;
+use App\Http\Controllers\QrCodeController;
 
 /*
 |--------------------------------------------------------------------------
