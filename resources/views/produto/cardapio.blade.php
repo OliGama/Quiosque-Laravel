@@ -1,4 +1,4 @@
-@extends('layouts.panel')
+@extends('layouts.panelguest')
 @section('title')
     Cardápio
 @endsection
@@ -24,7 +24,7 @@
                 @if ($produto->esgotado == false)
                     <td>R$ {{ number_format($produto->preco, 2, ",") }}</td>
                 @else
-                    <td>Produto está Esgotado</td>
+                    <td>Produto Esgotado</td>
                 @endif
 
         @empty
