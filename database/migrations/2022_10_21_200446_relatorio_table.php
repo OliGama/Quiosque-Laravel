@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('relatorio', function (Blueprint $table) {
             $table->id();
-            $table->integer('usuario_id');
+            $table->date('dataInicio');
             $table->timestamps();
         });
     }

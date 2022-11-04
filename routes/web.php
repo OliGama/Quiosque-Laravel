@@ -148,5 +148,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('pedido/{pedido}/produto/{produto}/menos', [PedidoProdutoController::class, 'update_menos'])->name('menos.produto');
 
     // Rota Relatório
+    Route::get('relatorio', [RelatorioController::class, 'index'])->name('relatorio.index');
     Route::get('relatorio/{relatorio}', [RelatorioController::class, 'show'])->name('relatorio.show');
 });
