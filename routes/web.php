@@ -29,8 +29,9 @@ use App\Http\Controllers\QrCodeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('cardapio/{id}', [ProdutoController::class, 'cardapio'])->middleware('guest')->name('produto.cardapio');
 
-Route::get('qr-code', [ProdutoController::class, 'menuQR'])->name('menuQR');
+Route::get('qr-code', [QrCodeController::class, 'index']);
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
@@ -117,7 +118,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Rotas para Produtos
     Route::get('produto', [ProdutoController::class, 'index'])->name('produto.index');
-    Route::resource('produto', ProdutoController::class)->except('index')->middleware('role:caixa');
+    Route::put('produto/{produto}', [ProdutoController::class, 'esgotado'])->name('produto.esgotado');
+    Route::resource('produto', ProdutoController::class)->except('index', 'esgotado')->middleware('role:caixa');
 
 
     //Rotas para Mesas
@@ -128,6 +130,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('mesas/{mesa}', [MesasController::class, 'destroy'])->name('mesas.destroy');
     Route::put('mesas/abrir/{mesa}', [MesasController::class, 'abrir'])->name('mesas.abrir');
     Route::put('mesas/fechar/{mesa}', [MesasController::class, 'fechar'])->name('mesas.fechar');
+    Route::put('mesas/juntar', [MesasController::class, 'juntar'])->name('mesas.juntar');
 
 
     //Rotas para Pedidos

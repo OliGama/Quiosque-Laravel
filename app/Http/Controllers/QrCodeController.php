@@ -8,7 +8,7 @@ class QrCodeController extends Controller
 {
     public function index()
     {
-      return view('qrcode');
+      return view('qrcode.qrcode');
     }
 
 }

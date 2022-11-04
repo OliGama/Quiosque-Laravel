@@ -59,19 +59,24 @@ class ProdutoController extends Controller
         return redirect()->route('produto.index')->with('success', 'Produto deletado!');
     }
 
-    public function menuQR(Mesa $id){
+    public function cardapio(Mesa $id){
 
         $produtos = Produto::query();
 
-        return QRCode::url('werneckbh.github.io/qr-code/')
-                  ->setSize(8)
-                  ->setMargin(2)
-                  ->png();
+        return view('produto.cardapio', [
+            'produtos' => $produtos->paginate(10),
+            $id
+        ]);
+    }
 
-
-        // view('produto.cardapio', [
-        //     'produtos' => $produtos->paginate(10),
-        //     $id
-        // ]);
+    public function esgotado($id){
+        $produto = Produto::find($id);
+        if($produto->esgotado == false){
+            $produto->update(['esgotado' => true]);
+            return redirect()->route('produto.index');
+        }elseif($produto->esgotado == true){
+            $produto->update(['esgotado' => false]);
+            return redirect()->route('produto.index');
+        }
     }
 }

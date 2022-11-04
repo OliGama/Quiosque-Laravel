@@ -11,7 +11,8 @@ class Produto extends Model
     protected $fillable = [
         'nome_produto',
         'tipo_produto',
-        'preco'
+        'preco',
+        'esgotado'
     ];
 
     //relationships
