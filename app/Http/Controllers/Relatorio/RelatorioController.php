@@ -18,14 +18,26 @@ class RelatorioController extends Controller
 
     public function create(RelatorioRequest $request) {
         Relatorio::create($request->all());
-        dd($request);
+        $relatorio = Relatorio::all();
+
+        $totalVendas = Pedido::findOrFail('quantidade');
+        $lucro = Produto::findOrFail('preco');
+
+        $relatorio->totalVendas = $totalVendas;
+        $relatorio->lucro = $lucro;
         return redirect()
-            ->route('relatorio.show')
+            ->route('relatorio.index')
             ->with('success', 'Relatorio criado com sucesso!');
     }
 
-    public function show(RelatorioRequest $request) {
+    public function show(Relatorio $relatorio) {
         $relatorio = Relatorio::all();
+
+        $totalVendas = Pedido::findOrFail('quantidade');
+        $lucro = Produto::findOrFail('preco');
+
+        $relatorio->totalVendas = $totalVendas;
+        $relatorio->lucro = $lucro;
         dd($relatorio);
         return view('relatorio.show', compact('relatorio'));
     }
