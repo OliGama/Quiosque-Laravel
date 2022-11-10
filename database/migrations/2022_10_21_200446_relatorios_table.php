@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('relatorio', function (Blueprint $table) {
+        Schema::create('relatorios', function (Blueprint $table) {
             $table->id();
             $table->date('dataInicio');
+            $table->date('dataFinal');
+            $table->integer('totalVendas')->nullable();;
+            $table->decimal('lucro', 8, 2)->nullable();;
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('relatorio');
+        Schema::dropIfExists('relatorios');
     }
 };

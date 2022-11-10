@@ -149,5 +149,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Rota Relatório
     Route::get('relatorio', [RelatorioController::class, 'index'])->name('relatorio.index');
-    Route::get('relatorio/{relatorio}', [RelatorioController::class, 'show'])->name('relatorio.show');
+    Route::get('relatorio/criar', [RelatorioController::class, 'create'])->name('relatorio.create');
+    Route::get('relatorio/show', [RelatorioController::class, 'show'])->name('relatorio.show');
 });

@@ -3,29 +3,30 @@
 namespace App\Http\Controllers\Relatorio;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Relatorio\RelatorioRequest;
 use App\Models\Pedido;
 use App\Models\Produto;
 use App\Models\User;
+use App\Models\Relatorio;
 use Illuminate\Http\Request;
 
 class RelatorioController extends Controller
 {
     public function index() {
-        $dataInicio = Pedido::find('timestamp');
-        dd($dataInicio);
-        return view('relatorio.index', compact('dataInicio'));
+        return view('relatorio.index');
     }
 
-    public function show(Request $request) {
-        // $pedidos = Pedido::all();
-        // $produtos = Produto::find($request->produto_id);
-        // $usuario = User::find($request->usuario_id);
-        // // $pedidos_produtos = PedidoProduto::find('pedido_id', 'produdo_id', 'quantidade');
-        // dd($pedidos);
-        // return view('relatorio.show', [
-        //     'pedidos' => $pedidos,
-        //     'produtos' => $produtos,
-        //     'usuario' => $usuario
-        // ]);
+    public function create(RelatorioRequest $request) {
+        Relatorio::create($request->all());
+        dd($request);
+        return redirect()
+            ->route('relatorio.show')
+            ->with('success', 'Relatorio criado com sucesso!');
+    }
+
+    public function show(RelatorioRequest $request) {
+        $relatorio = Relatorio::all();
+        dd($relatorio);
+        return view('relatorio.show', compact('relatorio'));
     }
 }
