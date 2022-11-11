@@ -125,7 +125,7 @@
                                     <input type="password" name="password" class="form-control" id="password">
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">Login</button>
+                                    <button type="submit" class="btn btn-outline-primary active shadow">Login</button>
                                 </div>
                         </form>
                     </div>
