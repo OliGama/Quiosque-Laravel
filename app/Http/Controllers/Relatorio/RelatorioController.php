@@ -20,7 +20,6 @@ class RelatorioController extends Controller
     public function create(RelatorioRequest $request)
     {  
         $produtos = DB::table('pedido_produto')->whereBetween('created_at', [date($request->dataInicio), date($request->dataFinal)])->get();
-        $produtos = DB::table('pedido_produto')->get();
         dd($produtos);
         return redirect()
             ->route('relatorio.index')
