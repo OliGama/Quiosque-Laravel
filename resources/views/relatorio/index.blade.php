@@ -1,7 +1,8 @@
 @extends('layouts.panel')
 @section('title', 'Relatorios')
 @section('content')
-    <form method="GET" action="{{ route('relatorio.create') }}">
+    <form method="POST" action="{{ route('relatorio.create') }}">
+        @csrf
         <div class="card shadow">
             <h5 class="card-header">Relatorios</h5>
             <div class="card-body">

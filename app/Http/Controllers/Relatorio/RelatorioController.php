@@ -9,6 +9,7 @@ use App\Models\Produto;
 use App\Models\User;
 use App\Models\Relatorio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RelatorioController extends Controller
 {
@@ -16,15 +17,11 @@ class RelatorioController extends Controller
         return view('relatorio.index');
     }
 
-    public function create(RelatorioRequest $request) {
-        Relatorio::create($request->all());
-        $relatorio = Relatorio::all();
-
-        $totalVendas = Pedido::findOrFail('quantidade');
-        $lucro = Produto::findOrFail('preco');
-
-        $relatorio->totalVendas = $totalVendas;
-        $relatorio->lucro = $lucro;
+    public function create(RelatorioRequest $request)
+    {  
+        $produtos = DB::table('pedido_produto')->whereBetween('created_at', [date($request->dataInicio), date($request->dataFinal)])->get();
+        $produtos = DB::table('pedido_produto')->get();
+        dd($produtos);
         return redirect()
             ->route('relatorio.index')
             ->with('success', 'Relatorio criado com sucesso!');
