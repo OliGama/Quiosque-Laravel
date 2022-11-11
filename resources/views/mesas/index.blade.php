@@ -82,7 +82,8 @@
                 </form>
             </div>
             <div class="d-flex justify-content-end">
-                <form method="POST" action="{{ route('mesas.juntar', $mesa->id) }}">
+                {{-- action="{{ route('mesas.juntar', $mesa->id) }} --}}
+                <form method="POST">
                     @method('PUT')
                     @csrf
                     <button type="submit" class="btn btn-md btn-outline-primary shadow active">Juntar Mesas</button>
