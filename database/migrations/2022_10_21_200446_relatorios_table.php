@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->date('dataInicio');
             $table->date('dataFinal');
-            $table->integer('totalVendas')->nullable();
-            $table->decimal('lucro', 8, 2)->nullable();
+            $table->string('produto_nome')->references('nome_produto')->on('produtos');
             $table->timestamps();
         });
     }

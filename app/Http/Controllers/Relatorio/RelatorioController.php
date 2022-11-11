@@ -18,23 +18,15 @@ class RelatorioController extends Controller
     }
 
     public function create(RelatorioRequest $request)
-    {  
-        $produtos = DB::table('pedido_produto')->whereBetween('created_at', [date($request->dataInicio), date($request->dataFinal)])->get();
-        dd($produtos);
-        return redirect()
-            ->route('relatorio.index')
-            ->with('success', 'Relatorio criado com sucesso!');
-    }
-
-    public function show(Relatorio $relatorio) {
-        $relatorio = Relatorio::all();
-
-        $totalVendas = Pedido::findOrFail('quantidade');
-        $lucro = Produto::findOrFail('preco');
-
-        $relatorio->totalVendas = $totalVendas;
-        $relatorio->lucro = $lucro;
-        dd($relatorio);
-        return view('relatorio.show', compact('relatorio'));
+    {
+        $pedidos = DB::table('pedido_produto')->whereBetween('created_at', [date($request->dataInicio), date($request->dataFinal)])->get();
+        // dd($produtos);
+        $allProdutos = Produto::all();
+        $produto_nome = $allProdutos->pluck('nome_produto')->first();
+        // dd($produto_nome);
+        return view('relatorio.show', [
+            'pedidos' => $pedidos,
+            'nome_produto' => $produto_nome
+        ]);
     }
 }

@@ -149,6 +149,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Rota Relatório
     Route::get('relatorio', [RelatorioController::class, 'index'])->name('relatorio.index');
-    Route::post('relatorio/criar', [RelatorioController::class, 'create'])->name('relatorio.create');
-    Route::get('relatorio/show', [RelatorioController::class, 'show'])->name('relatorio.show');
+    Route::post('relatorio/relatorio', [RelatorioController::class, 'create'])->name('relatorio.create');
+    // Route::get('relatorio/show', [RelatorioController::class, 'show'])->name('relatorio.show');
 });

@@ -4,19 +4,23 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">Inicio</th>
-                <th scope="col">Final</th>
-                <th scope="col">Total vendas</th>
-                <th scope="col">Lucro</th>
+                <th scope="col">Data</th>
+                <th scope="col">ID do Pedido</th>
+                <th scope="col">ID do Produto</th>
+                <th scope="col">Produto</th>
+                <th scope="col">Quantidade</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th>{{ $relatorio->dataInicio }}</th>
-                <td>{{ $relatorio->dataFinal }}</td>
-                <td>{{ $relatorio->totalVendas }}</td>
-                <td>{{ $relatorio->lucro }}</td>
-            </tr>
+            @foreach ($pedidos as $pedido)
+                <tr>
+                    <th>{{ $pedido->created_at }}</th>
+                    <td>{{ $pedido->pedido_id }}</td>
+                    <td>{{ $pedido->produto_id }}</td>
+                    {{-- <td>{{ $pedido->produto_nome }}</td> --}}
+                    <td>{{ $pedido->quantidade }}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 @endsection
