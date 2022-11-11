@@ -7,7 +7,7 @@
                 <th scope="col">Data</th>
                 <th scope="col">ID do Pedido</th>
                 <th scope="col">ID do Produto</th>
-                <th scope="col">Produto</th>
+                {{-- <th scope="col">Produto</th> --}}
                 <th scope="col">Quantidade</th>
             </tr>
         </thead>

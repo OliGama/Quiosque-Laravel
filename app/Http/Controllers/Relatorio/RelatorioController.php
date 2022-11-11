@@ -22,8 +22,8 @@ class RelatorioController extends Controller
         $pedidos = DB::table('pedido_produto')->whereBetween('created_at', [date($request->dataInicio), date($request->dataFinal)])->get();
         // dd($produtos);
         $allProdutos = Produto::all();
-        $produto_nome = $allProdutos->pluck('nome_produto')->first();
-        // dd($produto_nome);
+        $produto_nome = $allProdutos->pluck('nome_produto')->unique();
+        dd($produto_nome);
         return view('relatorio.show', [
             'pedidos' => $pedidos,
             'nome_produto' => $produto_nome
