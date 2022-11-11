@@ -10,7 +10,7 @@
                         class="col-5 card shadow @if ($mesa->ocupada == 0) bg-success bg-gradient mb-3
                         @elseif ($mesa->ocupada == 1) text-bg-warning bg-gradient mb-3 @endif">
                         <div class="card-body">
-                            <h5 class="card-title text-uppercase">{{ $mesa->numero }}</h5>
+                            <h5 class="card-title text-uppercase" style="color: #fff">{{ $mesa->numero }}</h5>
                             <h6 class="card-subtitle mb-2 text-dark">
                                 @if ($mesa->ocupada == 0)
                                     Vazia
@@ -82,11 +82,47 @@
                 </form>
             </div>
             <div class="d-flex justify-content-end">
-                <form method="POST" action="{{ route('mesas.juntar', $mesa->id) }}">
-                    @method('PUT')
-                    @csrf
-                    <button type="submit" class="btn btn-md btn-outline-primary shadow active">Juntar Mesas</button>
-                </form>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Juntar mesas
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Escolha as mesas</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form method="POST" action="{{route('mesas.juntar')}}">
+                                @csrf
+                                <div class="modal-body">
+                                    <select class="form-select {{ $errors->has('numero') ? 'is-invalid' : '' }}"
+                                        aria-label="Default select example" name="numero">
+                                        <option value="" selected>Selecione as mesas</option>
+                                        @foreach ($mesas as $mesa )
+                                            <option value="">{{$mesa->id}}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="invalid-feedback">{{ $errors->first('numero') }}</div>
+                                    <select class="form-select {{ $errors->has('numero') ? 'is-invalid' : '' }}"
+                                        aria-label="Default select example" name="numero">
+                                        <option value="" selected>Selecione as mesas</option>
+                                        @foreach ($mesas as $mesa )
+                                            <option value="">{{$mesa->id}}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="invalid-feedback">{{ $errors->first('numero') }}</div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                    <button type="submit" class="btn btn-primary">Salvar mudanças</button>
+                                </div>
+                            </form>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

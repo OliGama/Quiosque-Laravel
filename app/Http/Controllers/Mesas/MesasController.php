@@ -62,8 +62,7 @@ class MesasController extends Controller
 
     public function juntar(Mesa $mesa)
     {
-        $mesa = Mesa::find($mesa->pedidos());
-        dd($mesa);
+        //$mesa = Mesa::find($mesa->pedidos());
 
         return view('mesas.juntar');
     }
