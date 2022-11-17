@@ -24,7 +24,7 @@
                 @if ($produto->esgotado == false)
                     <td>R$ {{ number_format($produto->preco, 2, ",") }}</td>
                 @else
-                    <td>Produto Esgotado</td>
+                    <td style="color:crimson">Produto Esgotado</td>
                 @endif
 
         @empty

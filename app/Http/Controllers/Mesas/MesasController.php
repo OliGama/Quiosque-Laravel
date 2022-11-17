@@ -60,10 +60,23 @@ class MesasController extends Controller
         return redirect()->route('mesas.index')->with('success', $mesa->numero.' fechada com sucesso');
     }
 
-    public function juntar(Mesa $mesa)
+    public function juntar($id1, $id2)
     {
         //$mesa = Mesa::find($mesa->pedidos());
+        $mesa1 = Mesa::with('pedidos.produtos')->find($id1);
+        $mesa2 = Mesa::with('pedidos.produtos')->find($id2);
+        $pedidos = $mesa2->pedidos()->first();
+        $pedido_final = $mesa1->pedidos()->where('finalizado', false)->with('produtos')->first()->produtos->pluck('id')->toArray();
+        // $mesa2->pedidos()->where('finalizado', false)->delete();
 
-        return view('mesas.juntar');
+        foreach ($pedidos->produtos as $key => $produto) {
+            if(in_array($produto->id, $pedido_final)){
+                // somas as quantidades
+            } else {
+                // cria um novo
+            }
+        }
+
+        return redirect()->route('mesas.index');
     }
 }

@@ -1,44 +1,12 @@
 @extends('layouts.panelguest')
 
 @section('content')
-    <div class="card-body">
-        <span>Mesa 1</span>
-        {!! QrCode::size(150)->generate(route('produto.cardapio', 1)) !!}
-    </div>
-    <div class="card-body">
-        <span>Mesa 2</span>
-        {!! QrCode::size(150)->generate(route('produto.cardapio', 2)) !!}
-    </div>
-    <div class="card-body">
-        <span>Mesa 3</span>
-        {!! QrCode::size(150)->generate(route('produto.cardapio', 3)) !!}
-    </div>
-    <div class="card-body">
-        <span>Mesa 4</span>
-        {!! QrCode::size(150)->generate(route('produto.cardapio', 4)) !!}
-    </div>
-    <div class="card-body">
-        <span>Mesa 5</span>
-        {!! QrCode::size(150)->generate(route('produto.cardapio', 5)) !!}
-    </div>
-    <div class="card-body">
-        <span>Mesa 6</span>
-        {!! QrCode::size(150)->generate(route('produto.cardapio', 6)) !!}
-    </div>
-    <div class="card-body">
-        <span>Mesa 7</span>
-        {!! QrCode::size(150)->generate(route('produto.cardapio', 7)) !!}
-    </div>
-    <div class="card-body">
-        <span>Mesa 8</span>
-        {!! QrCode::size(150)->generate(route('produto.cardapio', 8)) !!}
-    </div>
-    <div class="card-body">
-        <span>Mesa 9</span>
-        {!! QrCode::size(150)->generate(route('produto.cardapio', 9)) !!}
-    </div>
-    <div class="card-body">
-        <span>Mesa 10</span>
-        {!! QrCode::size(150)->generate(route('produto.cardapio', 10)) !!}
+    <div class="d-flex flex-wrap">
+        @for($i=1; $i<11; $i++)
+            <div class="p-5 border-1 m-3 shadow rounded bg-white">
+                <h3 class="text-center bold">Mesa {{$i}}</h3>
+                {{QrCode::size(150)->generate(route('produto.cardapio', $i))}}
+            </div>
+        @endfor
     </div>
 @endsection

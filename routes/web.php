@@ -130,7 +130,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('mesas/{mesa}', [MesasController::class, 'destroy'])->name('mesas.destroy');
     Route::put('mesas/abrir/{mesa}', [MesasController::class, 'abrir'])->name('mesas.abrir');
     Route::put('mesas/fechar/{mesa}', [MesasController::class, 'fechar'])->name('mesas.fechar');
-    Route::get('mesas/{id}/{id}', [MesasController::class, 'juntar'])->name('mesas.juntar');
+    //Route::get('mesas/{id}/{id}', [MesasController::class, 'juntar'])->name('mesas.juntar');
+    //Route::get('mesas/{id1}/{id2}', [MesasController::class, 'juntar'])->name('mesas.juntar');
 
 
     //Rotas para Pedidos
@@ -145,4 +146,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('pedidos/{pedido}/produto/{produto}', [PedidoProdutoController::class, 'destroy'])->name('pedido.produto.destroy');
     Route::get('pedido/{pedido}/produto/{produto}/mais', [PedidoProdutoController::class, 'update_mais'])->name('mais.produto');
     Route::get('pedido/{pedido}/produto/{produto}/menos', [PedidoProdutoController::class, 'update_menos'])->name('menos.produto');
+
+    // Rota Relatório
+    Route::get('relatorio', [RelatorioController::class, 'index'])->name('relatorio.index');
+    Route::post('relatorio/relatorio', [RelatorioController::class, 'create'])->name('relatorio.create');
+    // Route::get('relatorio/show', [RelatorioController::class, 'show'])->name('relatorio.show');
 });

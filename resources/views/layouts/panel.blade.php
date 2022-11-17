@@ -52,7 +52,12 @@
                     <span>Lista de Produtos</span>
                 </a>
             </li>
-            
+            <li class="nav-item">
+                <a href="{{ route('relatorio.index') }}" class="nav-link">
+                    <i class="fa fa-clipboard-list"></i>
+                    <span>Relatorio</span>
+                </a>
+            </li>
 
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->

@@ -18,6 +18,6 @@ class Produto extends Model
     //relationships
 
     public function pedidos(){
-        return $this->belongsToMany(Pedido::class)->withPivot(['quantidade', 'observacao']);
+        return $this->belongsToMany(Pedido::class)->withPivot(['quantidade', 'observacao'])->withTimestamps();
     }
 }

@@ -52,6 +52,12 @@
                     <span>Lista de Produtos</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('relatorio.index') }}" class="nav-link">
+                    <i class="fa fa-clipboard-list"></i>
+                    <span>Relatorio</span>
+                </a>
+            </li>
 
 
             <!-- Divider -->
@@ -128,7 +134,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary shadow-sm">Login</button>
+                                    <button type="submit" class="btn btn-outline-primary active shadow">Login</button>
                                     <a class="btn btn-outline-secondary shadow" role="button"
                                         href="{{ route('password.request') }}">Esqueceu sua senha ?</a>
                                 </div>
@@ -153,7 +159,7 @@
 
                     <main class="pb-5">
                         <!-- CONTEÚDO -->
-                        
+
                     </main>
 
                 </div>
