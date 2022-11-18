@@ -64,16 +64,30 @@ class MesasController extends Controller
     {
         $mesa1 = Mesa::with('pedidos.produtos')->find($id1);
         $mesa2 = Mesa::with('pedidos.produtos')->find($id2);
-        $pedidos = $mesa2->pedidos()->first();
-        $pedido_final = $mesa1->pedidos()->where('finalizado', false)->with('produtos')->first()->produtos->pluck('id')->toArray();
+        $pedido_mesa1 = $mesa1->pedidos()->where('finalizado', false)->with('produtos')->first();
+        $pedido_mesa2 = $mesa2->pedidos()->where('finalizado', false)->with('produtos')->first();
+        $produtos_final = $pedido_mesa1->produtos->pluck('id')->toArray();
         // $mesa2->pedidos()->where('finalizado', false)->delete();
 
-        foreach ($pedidos->produtos as $key => $produto) {
-            if(in_array($produto->id, $pedido_final)){
-                // somas as quantidades
+        foreach ($pedido_mesa2->produtos as $key => $produto) {
+            if(in_array($produto->id, $produtos_final)){
+
+                $pedido_produto = $pedido_mesa1->produtos->where('id', $produto->id)->first();
+                $pedido_produto->pivot->update([
+                    'quantidade' => $pedido_produto->pivot->quantidade + $produto->pivot->quantidade,
+                ]);
+
             } else {
-                // cria um novo
+                $pedido_mesa1->produtos()->attach([$produto->id => [
+                    'quantidade' => $produto->pivot->quantidade,
+                    'observacao' => $produto->pivot->observacao
+                ]]);
             }
+            $pedido_mesa2->produtos()->detach();
+            $pedido_mesa2->update([
+                'finalizado' => true
+            ]);
+            // $pedido_mesa2->mesa->update(['is_together' => true]);
         }
 
         return redirect()->route('mesas.index');

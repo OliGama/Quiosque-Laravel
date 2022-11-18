@@ -18,9 +18,8 @@ class Mesa extends Model
     //relationships
 
     public function pedidos(){
-        return $this->hasMany(Pedido::class)->withTimeSta;
+        return $this->hasMany(Pedido::class);
     }
-
 
 }
 
