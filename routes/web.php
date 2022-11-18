@@ -130,8 +130,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('mesas/{mesa}', [MesasController::class, 'destroy'])->name('mesas.destroy');
     Route::put('mesas/abrir/{mesa}', [MesasController::class, 'abrir'])->name('mesas.abrir');
     Route::put('mesas/fechar/{mesa}', [MesasController::class, 'fechar'])->name('mesas.fechar');
-    //Route::get('mesas/{id}/{id}', [MesasController::class, 'juntar'])->name('mesas.juntar');
-    //Route::get('mesas/{id1}/{id2}', [MesasController::class, 'juntar'])->name('mesas.juntar');
+    Route::get('mesas/{id1}/{id2}', [MesasController::class, 'juntar'])->name('mesas.juntar');
 
 
     //Rotas para Pedidos

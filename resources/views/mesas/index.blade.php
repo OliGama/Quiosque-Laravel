@@ -95,13 +95,13 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Escolha as mesas</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            {{-- <form method="POST" action="{{route('mesas.juntar')}}">
+                            <form method="POST" action="{{route('mesas.juntar', $mesa1->id, $mesa2->id)}}">
                                 @csrf
                                 <div class="modal-body">
                                     <select class="form-select {{ $errors->has('numero') ? 'is-invalid' : '' }}"
                                         aria-label="Default select example" name="numero">
                                         <option value="" selected>Selecione as mesas</option>
-                                        @foreach ($mesas as $mesa )
+                                        @foreach ($mesas as $mesa1)
                                             <option value="">{{$mesa->id}}</option>
                                         @endforeach
                                     </select>
@@ -109,7 +109,7 @@
                                     <select class="form-select {{ $errors->has('numero') ? 'is-invalid' : '' }}"
                                         aria-label="Default select example" name="numero">
                                         <option value="" selected>Selecione as mesas</option>
-                                        @foreach ($mesas as $mesa )
+                                        @foreach ($mesas as $mesa2)
                                             <option value="">{{$mesa->id}}</option>
                                         @endforeach
                                     </select>
@@ -119,7 +119,7 @@
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                                     <button type="submit" class="btn btn-primary">Salvar mudanças</button>
                                 </div>
-                            </form> --}}
+                            </form>
                     </div>
                     </div>
                 </div>
