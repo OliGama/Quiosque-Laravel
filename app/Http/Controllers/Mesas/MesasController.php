@@ -64,8 +64,15 @@ class MesasController extends Controller
     {
         $mesa1 = Mesa::with('pedidos.produtos')->find($id1);
         $mesa2 = Mesa::with('pedidos.produtos')->find($id2);
+
+
         $pedido_mesa1 = $mesa1->pedidos()->where('finalizado', false)->with('produtos')->first();
         $pedido_mesa2 = $mesa2->pedidos()->where('finalizado', false)->with('produtos')->first();
+        $mesa2->update(['juntar' => $mesa1->id]);
+        if (!$pedido_mesa2) {
+            return redirect()->route('mesas.index');
+        }
+
         $produtos_final = $pedido_mesa1->produtos->pluck('id')->toArray();
         // $mesa2->pedidos()->where('finalizado', false)->delete();
 

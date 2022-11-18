@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('numero');
             $table->boolean('ocupada')->default(false)->nullable();
-            $table->boolean('juntar')->default(false)->nullable();
+            $table->integer('juntar')->nullable();
             $table->timestamps();
         });
     }
