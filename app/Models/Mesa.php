@@ -12,15 +12,15 @@ class Mesa extends Model
     protected $fillable = [
         'name',
         'numero',
-        'ocupada'
+        'ocupada',
+        'juntar'
     ];
 
     //relationships
 
     public function pedidos(){
-        return $this->hasMany(Pedido::class)->withTimestamps();
+        return $this->hasMany(Pedido::class);
     }
-
 
 }
 

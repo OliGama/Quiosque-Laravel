@@ -17,7 +17,7 @@ class PedidoProdutoController extends Controller
         if ($pedido_produto) {
             $pedido_produto->pivot->update([
                 'quantidade' => $pedido_produto->pivot->quantidade + $request->quantidade,
-                'observacao' => $pedido_produto->pivot->observacao + $request->observacao,
+                'observacao' => $pedido_produto->pivot->observacao + $request->observacao
             ]);
         } else {
             $pedido->produtos()->attach([$request->produto_id => [

@@ -1,31 +1,35 @@
 @extends('layouts.panel')
 @section('title', 'Relatorios')
 @section('content')
-    <table class="table table-hover">
+    <h2 class="text-center text-dark">Relatorio</h2>
+    <br>
+    <table class="table table-hover shadow">
         <thead>
             <tr>
-                <th scope="col">Data</th>
-                <th scope="col">ID do Pedido</th>
-                <th scope="col">ID do Produto</th>
-                {{-- <th scope="col">Produto</th> --}}
-                <th scope="col">Quantidade</th>
+                <th class="text-center" scope="col">ID Produto</th>
+                <th class="text-center" scope="col">Tipo</th>
+                <th class="text-center" scope="col">Produto</th>
+                <th class="text-center" scope="col">Quantidade</th>
+                <th class="text-center" scope="col">Total</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($pedidos as $pedido)
-            @if ($pedido->produto_id == $produtos->id)
-                {{$produtos->nome_produto}}
-            @endif
+            @forelse ($relatorios as $relatorio)
                 <tr>
-                    <th>{{ $pedido->created_at }}</th>
-                    <td>{{ $pedido->pedido_id }} </td>
-                    <td>{{ $pedido->produto_id->pivot()->produto_nome }}</td>
-                    {{-- <td>@if ($pedido->pedido_id == $allProdutos->id)
-                        {{$allProdutos->nome_produto}}
-                    @endif</td> --}}
-                    <td>{{ $pedido->quantidade }}</td>
+                    <td class="text-center"><b>{{ $relatorio['id_produto'] }}</b></td>
+                    <td class="text-center">{{ $relatorio['tipo'] }}</td>
+                    <td class="text-center">{{ $relatorio['nome'] }}</td>
+                    <td class="text-center">{{ $relatorio['quantidade'] }}</td>
+                    <td class="text-center">R$ {{ $relatorio['totalPedido'] }},00</td>
                 </tr>
-            @endforeach
+                @empty
+                <tr>
+                    <td colspan="5" class="text-center text-dark">Não há pedidos no intervalo selecionado</td>
+                </tr>
+            @endforelse
+            <tr>
+                <td colspan="5" class="text-end text-dark"><b>Total:</b></td>
+            </tr>
         </tbody>
     </table>
 @endsection

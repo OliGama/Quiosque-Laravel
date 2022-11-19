@@ -95,7 +95,7 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Escolha as mesas</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form method="POST" action="{{route('mesas.juntar', $mesa1->id, $mesa2->id)}}">
+                            <form method="POST" action="{{route('mesas.juntar')}}">
                                 @csrf
                                 <div class="modal-body">
                                     <select class="form-select {{ $errors->has('numero') ? 'is-invalid' : '' }}"
