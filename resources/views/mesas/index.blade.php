@@ -99,18 +99,18 @@
                                 @csrf
                                 <div class="modal-body">
                                     <select class="form-select {{ $errors->has('numero') ? 'is-invalid' : '' }}"
-                                        aria-label="Default select example" name="numero">
-                                        <option value="" selected>Selecione as mesas</option>
+                                        aria-label="Default select example" name="id1">
+                                        <option value="" selected>Selecione a mesa principal</option>
                                         @foreach ($mesas as $mesa1)
-                                            <option value="">{{$mesa->id}}</option>
+                                            <option value="{{$mesa1->id}}">{{$mesa1->numero}}</option>
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback">{{ $errors->first('numero') }}</div>
                                     <select class="form-select {{ $errors->has('numero') ? 'is-invalid' : '' }}"
-                                        aria-label="Default select example" name="numero">
-                                        <option value="" selected>Selecione as mesas</option>
+                                        aria-label="Default select example" name="id2">
+                                        <option value="" selected>Selecione a mesa para junção</option>
                                         @foreach ($mesas as $mesa2)
-                                            <option value="">{{$mesa->id}}</option>
+                                            <option value="{{$mesa2->id}}">{{$mesa2->numero}}</option>
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback">{{ $errors->first('numero') }}</div>

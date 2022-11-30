@@ -60,13 +60,13 @@ class MesasController extends Controller
         return redirect()->route('mesas.index')->with('success', $mesa->numero.' fechada com sucesso');
     }
 
-    public function juntar($id1, $id2)
+    public function juntar(Request $request)
     {
         //$mesa = Mesa::find($mesa->pedidos());
-        $mesa1 = Mesa::with('pedidos.produtos')->find($id1);
-        $mesa2 = Mesa::with('pedidos.produtos')->find($id2);
+        $mesa1 = Mesa::with('pedidos.produtos')->find($request->id1);
+        $mesa2 = Mesa::with('pedidos.produtos')->find($request->id2);
 
-
+        
         $pedido_mesa1 = $mesa1->pedidos()->where('finalizado', false)->with('produtos')->first();
         $pedido_mesa2 = $mesa2->pedidos()->where('finalizado', false)->with('produtos')->first();
         $mesa2->update(['juntar' => $mesa1->id]);
