@@ -8,14 +8,23 @@
                 @foreach ($mesas as $mesa)
                     <div
                         class="col-5 card shadow @if ($mesa->ocupada == 0) bg-success bg-gradient mb-3
-                        @elseif ($mesa->ocupada == 1) text-bg-warning bg-gradient mb-3 @endif">
+                        @elseif ($mesa->ocupada == 1 && $mesa->juntar == null)
+                            bg-warning bg-gradient mb-3
+                        @endif
+                        @if ($mesa->juntar != null)
+                            bg-secondary bg-gradient mb-3
+                        @endif
+                        ">
                         <div class="card-body">
                             <h5 class="card-title text-uppercase" style="color: #fff">{{ $mesa->numero }}</h5>
                             <h6 class="card-subtitle mb-2 text-dark">
                                 @if ($mesa->ocupada == 0)
                                     Vazia
-                                @elseif ($mesa->ocupada == 1)
+                                @elseif ($mesa->ocupada == 1 && $mesa->juntar == null)
                                     Ocupada
+                                @endif
+                                @if ($mesa->juntar != null)
+                                    Junta com a Mesa {{$mesa->juntar}}
                                 @endif
                             </h6>
                             <p class="card-text"></p>
@@ -27,7 +36,7 @@
                                         Abrir
                                     </button>
                                 </form>
-                            @elseif ($mesa->ocupada == 1)
+                            @elseif ($mesa->ocupada == 1 && $mesa->juntar == null)
                                 <div class="hstack gap-2">
                                     <button type="button" class="btn btn-outline-primary shadow active btn-md "
                                         data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ $mesa->id }}">
@@ -72,6 +81,17 @@
                                     </div>
                                 </form>
                             @endif
+                            @if ($mesa->juntar != null)
+                                    <div class="hstack gap-2">
+                                        <form method="POST" {{--action="{{ route('mesas.fechar', $mesa->id) }}"--}}>
+                                            @method('put')
+                                            @csrf
+                                            <button type="submit" class="btn btn-md btn-secondary shadow ">
+                                                Separar
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
                         </div>
                     </div>
                 @endforeach

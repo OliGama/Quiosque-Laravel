@@ -95,7 +95,6 @@ class MesasController extends Controller
             $pedido_mesa2->update([
                 'finalizado' => true
             ]);
-            $pedido_mesa2->mesa->update(['juntar' => true]);
         }
 
         return redirect()->route('mesas.index');

@@ -28,8 +28,15 @@
                 </tr>
             @endforelse
             <tr>
-                <td colspan="5" class="text-end text-dark"><b>Total:</b></td>
+                <td colspan="5" class="text-end text-dark">
+                    <b>Total: </b> R$ {{ number_format($total, 2, ',', '.') }}
+                    <br>
+                    <b>Taxa de serviço (10%): </b> R$ {{ number_format($servico, 2, ',', '.') }}
+                </td>
             </tr>
         </tbody>
     </table>
+
+    <script src="{{ asset('vendor/jquery-mask/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('js/Relatorio/mask.js') }}"></script>
 @endsection
