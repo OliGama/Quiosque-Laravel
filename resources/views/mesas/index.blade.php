@@ -83,7 +83,7 @@
                             @endif
                             @if ($mesa->juntar != null)
                                     <div class="hstack gap-2">
-                                        <form method="POST" {{--action="{{ route('mesas.fechar', $mesa->id) }}"--}}>
+                                        <form method="POST" action="{{ route('mesas.separar', $mesa) }}">
                                             @method('put')
                                             @csrf
                                             <button type="submit" class="btn btn-md btn-secondary shadow ">

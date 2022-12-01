@@ -90,12 +90,18 @@ class MesasController extends Controller
                     'observacao' => $produto->pivot->observacao
                 ]]);
             }
-            $pedido_mesa2->produtos()->detach();
-            $pedido_mesa2->update([
-                'finalizado' => true
-            ]);
         }
 
+        $pedido_mesa2->produtos()->detach();
+        $pedido_mesa2->update([
+            'finalizado' => true
+        ]);
+
+        return redirect()->route('mesas.index');
+    }
+
+    public function separar(Mesa $mesa){
+        $mesa->update(['juntar' => null, 'ocupada' => false]);
         return redirect()->route('mesas.index');
     }
 }

@@ -132,6 +132,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('mesas/abrir/{mesa}', [MesasController::class, 'abrir'])->name('mesas.abrir');
     Route::put('mesas/fechar/{mesa}', [MesasController::class, 'fechar'])->name('mesas.fechar');
     Route::get('mesas/{id1}/{id2}', [MesasController::class, 'juntar'])->name('mesas.juntar')->middleware('role:caixa');
+    Route::put('mesas/{mesa}', [MesasController::class, 'separar'])->name('mesas.separar')->middleware('role:caixa');
 
 
     //Rotas para Pedidos
