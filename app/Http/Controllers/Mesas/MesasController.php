@@ -66,13 +66,18 @@ class MesasController extends Controller
         $mesa1 = Mesa::with('pedidos.produtos')->find($request->id1);
         $mesa2 = Mesa::with('pedidos.produtos')->find($request->id2);
 
-        
+
         $pedido_mesa1 = $mesa1->pedidos()->where('finalizado', false)->with('produtos')->first();
         $pedido_mesa2 = $mesa2->pedidos()->where('finalizado', false)->with('produtos')->first();
-        $mesa2->update(['juntar' => $mesa1->id]);
+
+        if (!$pedido_mesa1) {
+            return redirect()->route('mesas.index')->with('warning', 'Não há pedido aberto na mesa '.$mesa1->id);
+        }
         if (!$pedido_mesa2) {
+            $mesa2->update(['juntar' => $mesa1->id]);
             return redirect()->route('mesas.index');
         }
+        $mesa2->update(['juntar' => $mesa1->id]);
 
         $produtos_final = $pedido_mesa1->produtos->pluck('id')->toArray();
         // $mesa2->pedidos()->where('finalizado', false)->delete();
@@ -91,12 +96,18 @@ class MesasController extends Controller
                     'observacao' => $produto->pivot->observacao
                 ]]);
             }
-            $pedido_mesa2->produtos()->detach();
-            $pedido_mesa2->update([
-                'finalizado' => true
-            ]);
         }
 
+        $pedido_mesa2->produtos()->detach();
+        $pedido_mesa2->update([
+            'finalizado' => true
+        ]);
+
+        return redirect()->route('mesas.index');
+    }
+
+    public function separar(Mesa $mesa){
+        $mesa->update(['juntar' => null, 'ocupada' => false]);
         return redirect()->route('mesas.index');
     }
 }
