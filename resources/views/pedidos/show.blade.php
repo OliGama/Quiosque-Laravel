@@ -84,13 +84,15 @@
             </tbody>
         </table>
         <div class="col d-flex justify-content-end gap-2">
-            <a href="{{ route('mesas.index') }}" class="btn btn-md btn-outline-primary shadow active" role="button">Enviar</a>
+            <a href="{{ route('mesas.index') }}" class="btn btn-md btn-outline-primary shadow active" role="button">Voltar</a>
             {{-- <button type="submit" class="btn btn-md btn-outline-primary active">Enviar</button> --}}
-            <form method="POST" action="{{ route('pedidos.destroy', [$pedido, $mesa]) }}">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-md btn-secondary">Finalizar</button>
-            </form>
+            @if (auth()->user()->role === 'caixa')
+                <form method="POST" action="{{ route('pedidos.destroy', [$pedido, $mesa]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-md btn-secondary">Finalizar</button>
+                </form>
+            @endif
         </div>
     </div>
 </div>

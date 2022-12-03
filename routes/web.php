@@ -29,7 +29,7 @@ use App\Http\Controllers\QrCodeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('cardapio/{id}', [ProdutoController::class, 'cardapio'])->middleware('guest')->name('produto.cardapio');
+Route::get('cardapio/{id}', [ProdutoController::class, 'cardapio'])->name('produto.cardapio');
 
 Route::get('qr-code', [QrCodeController::class, 'index']);
 

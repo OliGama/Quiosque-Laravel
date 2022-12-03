@@ -88,6 +88,11 @@ class PedidoController extends Controller
 
         $pedido->update(['finalizado' => true]) ;
         $pedido->mesa->update(['ocupada' => false]);
+        $mesa = Mesa::where('juntar', $pedido->mesa_id);
+        if($mesa){
+            $mesa->update(['juntar' => null, 'ocupada' => false]);
+            return redirect()->route('mesas.index')->with('success', 'Pedido Finalizado com Sucesso!');
+        }
         $pedido->delete();
 
 
