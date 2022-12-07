@@ -1,7 +1,7 @@
 @extends('layouts.panel')
 @section('title', 'Nova Mesa')
 @section('content')
-    <form action="{{ route('mesas.store') }}" method="POST" autocomplete="off">
+    <form method="POST" action="{{route('mesas.store') }}" >
         @csrf
         <div class="row">
             <div class="col-lg-6">

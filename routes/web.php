@@ -15,7 +15,6 @@ use App\Http\Controllers\Caixa\Dashboard\DashboardController as CaixaDashboardCo
 use App\Http\Controllers\Mesas\MesasController;
 use App\Http\Controllers\Pedido\PedidoController;
 use App\Http\Controllers\Pedido\PedidoProdutoController;
-use App\Http\Controllers\Pagamento\PagamentoController;
 use App\Http\Controllers\Relatorio\RelatorioController;
 use App\Http\Controllers\QrCodeController;
 
@@ -126,7 +125,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('mesas', [MesasController::class, 'index'])->name('mesas.index');
     Route::get('mesas/create', [MesasController::class, 'create'])->name('mesas.create')->middleware('role:caixa');
     Route::get('mesas/{mesa}/edit', [MesasController::class, 'edit'])->name('mesas.edit');
-    Route::post('mesas', [MesasController::class, 'store'])->name('mesas.store');
+    Route::post('mesa', [MesasController::class, 'store'])->name('mesas.store');
     Route::delete('mesas/{mesa}', [MesasController::class, 'destroy'])->name('mesas.destroy');
     Route::put('mesas/abrir/{mesa}', [MesasController::class, 'abrir'])->name('mesas.abrir');
     Route::put('mesas/fechar/{mesa}', [MesasController::class, 'fechar'])->name('mesas.fechar');

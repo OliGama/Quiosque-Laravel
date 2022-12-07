@@ -103,7 +103,7 @@
             </div>
             <div class="d-flex justify-content-end">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-md btn-outline-primary shadow active" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Juntar mesas
                 </button>
 
